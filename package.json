@@ -1,0 +1,25 @@
+{
+  "name": "aaper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lfsalazarcruz/aaper.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lfsalazarcruz/aaper/issues"
+  },
+  "homepage": "https://github.com/lfsalazarcruz/aaper#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "puppeteer": "^1.18.0",
+    "request-promise": "^4.2.4"
+  }
+}

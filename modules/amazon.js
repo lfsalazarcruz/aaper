@@ -24,28 +24,27 @@ amazon = {
 
     await page.goto(link, { waitUntil: "networkidle2" });
 
-    // let titles = await page.evaluate(() => {
-    //   const tds = Array.from(document.querySelectorAll(".p13n-sc-truncated"));
-    //   return tds.map(td => td.innerHTML);
-    // });
+    await page.waitFor("#zg-ordered-list > li");
 
     let itemsArray = await page.$$("#zg-ordered-list > li");
     let items = [];
 
     for (let itemElement of itemsArray) {
-      let item = await itemElement.$eval(
+      let title = await itemElement.$eval(
         'div[class="p13n-sc-truncated"]',
         element => element.innerText
       );
 
-      let reviewCount = await itemElement.$eval(
-        'div[class="a-icon-row a-spacing-none"]',
+      let price = await itemElement.$eval(
+        'span[class="p13n-sc-price"]',
         element => element.innerText
       );
 
+      debugger;
+
       items.push({
-        title: item,
-        reviews: reviewCount
+        title,
+        price
       });
     }
 

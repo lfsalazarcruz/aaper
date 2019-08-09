@@ -7,7 +7,7 @@ let page = null;
 // Constants
 const BASE_URL = "https://amazon.com/";
 
-amazon = {
+const amazon = {
   initialize: async () => {
     console.log("Starting the scraper...");
     browser = await puppeteer.launch({
@@ -30,17 +30,17 @@ amazon = {
     let items = [];
 
     for (let itemElement of itemsArray) {
-      let title = await itemElement.$eval(
-        'div[class="p13n-sc-truncated"]',
-        element => element.innerText
-      );
+      let title = await itemElement
+        .$eval('div[class="p13n-sc-truncated"]', element => element.innerText)
+        .catch(error => {
+          console.log(error);
+        });
 
-      let price = await itemElement.$eval(
-        'span[class="p13n-sc-price"]',
-        element => element.innerText
-      );
-
-      debugger;
+      let price = await itemElement
+        .$eval('span[class="p13n-sc-price"]', element => element.innerText)
+        .catch(error => {
+          console.log(error);
+        });
 
       items.push({
         title,

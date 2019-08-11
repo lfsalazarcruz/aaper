@@ -30,6 +30,12 @@ const amazon = {
     let items = [];
 
     for (let itemElement of itemsArray) {
+      let place = await itemElement
+        .$eval('span[class="zg-badge-text"]', element => element.innerText)
+        .catch(error => {
+          console.log(error);
+        });
+
       let title = await itemElement
         .$eval('div[class="p13n-sc-truncated"]', element => element.innerText)
         .catch(error => {
@@ -42,9 +48,34 @@ const amazon = {
           console.log(error);
         });
 
+      let rating = await itemElement
+        .$eval('span[class="a-icon-alt"]', element => element.innerText)
+        .catch(error => {
+          console.log(error);
+        });
+
+      let reviews = await itemElement
+        .$eval(
+          'a[class="a-size-small a-link-normal"]',
+          element => element.innerText
+        )
+        .catch(error => {
+          console.log(error);
+        });
+
+      let image = await itemElement
+        .$eval("img", element => element.getAttribute("src"))
+        .catch(error => {
+          console.log(error);
+        });
+
       items.push({
+        place,
         title,
-        price
+        price,
+        rating,
+        reviews,
+        image
       });
     }
 

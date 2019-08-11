@@ -24,7 +24,9 @@ const amazon = {
 
     await page.goto(link, { waitUntil: "networkidle2" });
 
-    await page.waitFor("#zg-ordered-list > li");
+    await page.waitFor("#zg-ordered-list > li").catch(error => {
+      console.log(error);
+    });
 
     let itemsArray = await page.$$("#zg-ordered-list > li");
     let items = [];

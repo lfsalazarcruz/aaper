@@ -17,7 +17,6 @@ const urls = [
   "https://www.amazon.com/Best-Sellers/zgbs/fashion/ref=zg_bs_pg_1?_encoding=UTF8&pg=",
   "https://www.amazon.com/Best-Sellers-Collectible-Coins/zgbs/coins/ref=zg_bs_pg_1?_encoding=UTF8&pg=",
   "https://www.amazon.com/Best-Sellers-Computers-Accessories/zgbs/pc/ref=zg_bs_pg_1?_encoding=UTF8&pg=",
-  "https://www.amazon.com/Best-Sellers-MP3-Downloads/zgbs/dmusic/ref=zg_bs_pg_1?_encoding=UTF8&pg=",
   "https://www.amazon.com/Best-Sellers-Electronics/zgbs/electronics/ref=zg_bs_pg_1?_encoding=UTF8&pg=",
   "https://www.amazon.com/Best-Sellers-Entertainment-Collectibles/zgbs/entertainment-collectibles/ref=zg_bs_pg_1?_encoding=UTF8&pg=",
   "https://www.amazon.com/Best-Sellers-Gift-Cards/zgbs/gift-cards/ref=zg_bs_pg_1?_encoding=UTF8&pg=",
@@ -45,14 +44,22 @@ const urls = [
 
 (async () => {
   await amazon.initialize();
-  let results;
 
-  for (let i = 1; i <= 2; i++) {
-    let productList = await amazon.getListOfProducts(
-      `https://www.amazon.com/Best-Sellers/zgbs/amazon-devices/ref=zg_bs_pg_1?_encoding=UTF8&pg=${i}`
-    );
+  let obj = {};
+  let results = [];
 
-    results = productList.concat(productList);
+  for (let url of urls) {
+    for (let i = 1; i <= 2; i++) {
+      let productList = await amazon.getListOfProducts(`${url}${i}`);
+
+      results = [...results, ...productList];
+    }
+
+    let t = url.slice(36);
+    let n = t.indexOf("/ref");
+    s = t.substring(0, n != -1 ? n : s.length);
+    obj[s] = results;
+    results = [];
   }
 
   debugger;

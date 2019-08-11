@@ -41,7 +41,9 @@ const urls = [
   "https://www.amazon.com/Best-Sellers-Home-Improvement/zgbs/hi/ref=zg_bs_pg_1?_encoding=UTF8&pg=",
   "https://www.amazon.com/Best-Sellers-Toys-Games/zgbs/toys-and-games/ref=zg_bs_pg_1?_encoding=UTF8&pg=",
   "https://www.amazon.com/best-sellers-video-games/zgbs/videogames/ref=zg_bs_pg_1?_encoding=UTF8&pg="
-](async () => {
+];
+
+(async () => {
   await amazon.initialize();
   let results;
 

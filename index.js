@@ -1,3 +1,4 @@
+const fs = require("fs");
 const amazon = require("./modules/amazon.js");
 const urls = require("./urls.js");
 
@@ -20,6 +21,10 @@ const urls = require("./urls.js");
     obj[s] = results;
     results = [];
   }
-
-  debugger;
+  let currentDate = new Date().toISOString().slice(0, 10);
+  fs.writeFileSync(
+    `./amazonLists/productData-${currentDate}.json`,
+    JSON.stringify(obj),
+    "utf-8"
+  );
 })();

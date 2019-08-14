@@ -71,13 +71,22 @@ const amazon = {
           console.log(error);
         });
 
+      let url = await itemElement
+        .$eval('a[class="a-link-normal"]', element =>
+          element.getAttribute("href")
+        )
+        .catch(error => {
+          console.log(error);
+        });
+
       items.push({
         place,
         title,
         price,
         rating,
         reviews,
-        image
+        image,
+        url
       });
     }
 

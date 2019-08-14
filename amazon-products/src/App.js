@@ -1,66 +1,152 @@
 import React, { Component } from "react";
 import "./App.css";
-import styled from "styled-components";
-import products from "./amazonLists/productData-2019-08-11.json";
-// import Searchbar from "./components/searchbar/Searchbar";
+import {
+  SearchbarContainer,
+  NavbarTitle,
+  SearchInnerContainer,
+  Dropdown,
+  SearchInput,
+  CategoryTitle,
+  ProductTable,
+  ProductTableFields,
+  ProductCellPosition,
+  ProductRow,
+  ProductCellTitle,
+  ProductCellRating,
+  ProductCellReview,
+  ProductCellPrice
+} from "./AppStyles";
 
-const ProductRow = styled.div`
-  display: flex;
-`;
-
-const SearchbarContainer = styled.div`
-  border: 1px solid blue;
-  display: flex;
-  justify-content: space-around;
-  padding: 10px;
-`;
+import products20190811 from "./amazonLists/productData-2019-08-11.json";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedCategory: "",
-      categoryList: []
+      categoryList: [],
+      filtered: [],
+      searchTerm: "",
+      displayItem: false,
+      itemSelected: {}
     };
   }
 
   selectCategory = e => {
+    if (e.target.value === "0") {
+      this.setState({
+        selectCategory: "",
+        categoryList: [],
+        filtered: [],
+        searchTerm: ""
+      });
+    } else {
+      this.setState({
+        selectedCategory: e.target.value,
+        categoryList: products20190811[e.target.value],
+        filtered: products20190811[e.target.value]
+      });
+    }
+  };
+
+  filterList = e => {
+    let currentList = [];
+    let newList = [];
+
+    if (e.target.value !== "") {
+      currentList = this.state.categoryList;
+      newList = currentList.filter(i => {
+        let lc = i.title.toLowerCase();
+        let filter = e.target.value.toLowerCase();
+
+        return lc.includes(filter);
+      });
+    } else {
+      newList = this.state.categoryList;
+    }
+
     this.setState({
-      selectedCategory: e.target.value,
-      categoryList: products[e.target.value]
+      filtered: newList
     });
+  };
+
+  extendProduct = e => {
+    let itemPosition = e.currentTarget.getAttribute("id");
+    const selectedItem = this.state.filtered.find(
+      item => item.place == itemPosition
+    );
+    this.setState({
+      itemSelected: selectedItem,
+      displayItem: true
+    });
+
+    if (this.state.displayItem) {
+      this.setState({
+        itemSelected: {},
+        displayItem: false
+      });
+    }
   };
 
   render() {
     return (
       <div className="App">
         <SearchbarContainer>
-          <select
-            name="selectedCategory"
-            value={this.state.selectedCategory}
-            onChange={this.selectCategory}
-          >
-            <option value="0">Select category</option>
-            {Object.keys(products).map(category => {
-              return <option value={category}>{category}</option>;
-            })}
-          </select>
-          <input />
+          <NavbarTitle>amazon best sellers</NavbarTitle>
+          <SearchInnerContainer>
+            <Dropdown
+              name="selectedCategory"
+              value={this.state.selectedCategory}
+              onChange={this.selectCategory}
+            >
+              <option value="0">Select category</option>
+              {Object.keys(products20190811).map((category, index) => {
+                return (
+                  <option key={index} value={category}>
+                    {category}
+                  </option>
+                );
+              })}
+            </Dropdown>
+            <SearchInput
+              type="text"
+              name="searchTerm"
+              onChange={this.filterList}
+              placeholder="Search items..."
+            />
+          </SearchInnerContainer>
         </SearchbarContainer>
-        <div>
-          {this.state.categoryList.map(product => {
+        <CategoryTitle>Category: {this.state.selectedCategory}</CategoryTitle>
+        <ProductTable>
+          <ProductTableFields>
+            <ProductCellPosition>Pos.</ProductCellPosition>
+            <ProductCellTitle style={{ textAlign: "center" }}>
+              Product Title
+            </ProductCellTitle>
+            <ProductCellRating>Rating</ProductCellRating>
+            <ProductCellReview>Reviews</ProductCellReview>
+            <ProductCellPrice>Price</ProductCellPrice>
+          </ProductTableFields>
+          {this.state.filtered.map((product, index) => {
             return (
-              <ProductRow>
-                <p>{product.place}</p>
-                <p>{product.title}</p>
-                <p>{product.rating}</p>
-                <p>{product.reviews}</p>
-                <p>{product.price}</p>
-                {/* <img src={product.image} /> */}
+              <ProductRow
+                id={product.place}
+                key={product.place}
+                onClick={this.extendProduct}
+              >
+                <ProductCellPosition>{product.place}</ProductCellPosition>
+                <ProductCellTitle>{product.title}</ProductCellTitle>
+                <ProductCellRating>{product.rating}</ProductCellRating>
+                <ProductCellReview>{product.reviews}</ProductCellReview>
+                <ProductCellPrice>{product.price}</ProductCellPrice>
+                {product.place === this.state.itemSelected.place &&
+                this.state.displayItem ? (
+                  <img src={product.image} />
+                ) : null}
               </ProductRow>
             );
           })}
-        </div>
+        </ProductTable>
       </div>
     );
   }

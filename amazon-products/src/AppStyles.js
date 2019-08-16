@@ -2,44 +2,61 @@ import styled from "styled-components";
 
 export const ProductTable = styled.div`
   padding: 10px;
+  margin-top: 130px;
 `;
 
 export const ProductTableFields = styled.div`
   display: flex;
-  background-color: #d4d4f7;
   margin: 1px 0;
-  color: #637382;
 `;
 
 export const ProductRow = styled.div`
+  padding: 8px 0;
   display: flex;
-  background-color: #eaeafa;
+  background-color: #ffffff;
   margin: 1px 0;
   color: #637382;
-  transition: all 0.1s;
-  :hover {
-    // background-color: #fcaf1b;
-    cursor: pointer;
-  }
 `;
 
 export const ProductCellPosition = styled.p`
-  width: 40px;
-  text-align: right;
+  width: 70px;
+  text-align: center;
   padding: 3px;
   margin: 5px 0;
   font-size: 14px;
+`;
+
+export const ProductTitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 40%;
 `;
 
 export const ProductCellTitle = styled.p`
-  width: 50%;
-  padding: 3px;
+  padding: 3px 5px;
   margin: 5px 0;
   font-size: 14px;
 `;
 
+export const AmazonLink = styled.a`
+  font-size: 14px;
+  text-decoration: none;
+  background-color: #23a6ff;
+  color: #ffffff;
+  width: 70px;
+  text-align: center;
+  padding: 5px;
+  margin: 0 0 5px;
+  border-radius: 3px;
+  transition: all 0.3s;
+  :hover {
+    background-color: #3399fe;
+  }
+`;
+
 export const ProductCellRating = styled.p`
-  width: 140px;
+  width: 130px;
   padding: 3px;
   margin: 5px 0;
   text-align: center;
@@ -47,7 +64,7 @@ export const ProductCellRating = styled.p`
 `;
 
 export const ProductCellReview = styled.p`
-  width: 70px;
+  width: 10%;
   padding: 3px;
   margin: 5px 0;
   text-align: right;
@@ -55,7 +72,7 @@ export const ProductCellReview = styled.p`
 `;
 
 export const ProductCellPrice = styled.p`
-  width: 70px;
+  width: 10%;
   padding: 3px;
   margin: 5px 0;
   text-align: right;
@@ -64,19 +81,18 @@ export const ProductCellPrice = styled.p`
 
 export const SearchbarContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
+  flex-direction: column;
   width: 100%;
-  background-color: #232f3e;
   position: fixed;
   top: 0;
+  background-color: #eaecef;
 `;
 
 export const SearchInnerContainer = styled.div`
   display: flex;
-  padding: 0;
-  margin: 0 40px;
+  background-color: #232f3e;
+  padding: 5px 10px;
+  align-items: center;
 `;
 
 export const NavbarTitle = styled.h1`
@@ -91,7 +107,7 @@ export const SearchInput = styled.input`
   border: none;
   padding: 0 10px;
   border-radius: 3px;
-  margin-left: 10px;
+  margin: 7px 7px 5px;
   font-size: 12px;
 `;
 
@@ -110,10 +126,37 @@ export const Dropdown = styled.select`
   }
 `;
 
+export const ProductCellContainer = styled.p`
+  width: 160px;
+  display: flex;
+  justify-content: center;
+  font-size: 13px;
+  margin: auto 30px;
+  padding: 5px 0;
+`;
+
+export const ProductCellImage = styled.img`
+  width: 100px;
+  height: 100px;
+`;
+
 export const CategoryTitle = styled.h1`
-  background-color: #7f7fe6;
-  color: #ffffff;
-  padding: 20px;
+  font-size: 14px;
   margin: 0;
-  margin-top: 55px;
+  padding: 7px 0 3px;
+  margin-left: 8px;
+`;
+
+export const FieldContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: #1b8cff;
+  color: #ffffff;
+  margin: 10px 10px 0;
+`;
+
+export const SearchContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import Home from "./components/home/Home";
 import {
   SearchbarContainer,
   NavbarTitle,
@@ -83,7 +84,7 @@ class App extends Component {
       <div className="App">
         <SearchbarContainer>
           <SearchInnerContainer>
-            <NavbarTitle>amazon best sellers</NavbarTitle>
+            <NavbarTitle>amazon scrapy</NavbarTitle>
             <Dropdown
               name="selectedCategory"
               value={this.state.selectedCategory}
@@ -99,6 +100,7 @@ class App extends Component {
               })}
             </Dropdown>
           </SearchInnerContainer>
+          {!this.state.selectedCategory ? <Home /> : null}
           {this.state.selectedCategory ? (
             <FieldContainer>
               <SearchContainer>
@@ -109,7 +111,7 @@ class App extends Component {
                   type="text"
                   name="searchTerm"
                   onChange={this.filterList}
-                  placeholder="Search items..."
+                  placeholder="Search item..."
                 />
               </SearchContainer>
               <ProductTableFields>

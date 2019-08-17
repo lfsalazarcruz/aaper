@@ -15,6 +15,17 @@ const amazon = {
     });
     page = await browser.newPage();
 
+    await page.setRequestInterception(true);
+
+    // Abort loading images and css styles when scraping to load faster
+    page.on("request", request => {
+      if (["stylesheet", "image", "font"].includes(request.resourceType())) {
+        request.abort();
+      } else {
+        request.continue();
+      }
+    });
+
     await page.goto(BASE_URL, { waitUntil: "networkidle2" });
     console.log("Initialization completed...");
   },

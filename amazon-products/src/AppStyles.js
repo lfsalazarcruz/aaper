@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const ProductTable = styled.div`
   padding: 10px;
   margin-top: 130px;
+  margin-bottom: 40px;
 `;
 
 export const ProductTableFields = styled.div`
@@ -90,7 +91,7 @@ export const SearchbarContainer = styled.div`
 
 export const SearchInnerContainer = styled.div`
   display: flex;
-  background-color: #232f3e;
+  background-color: #374962;
   padding: 5px 10px;
   align-items: center;
 `;
@@ -118,7 +119,7 @@ export const Dropdown = styled.select`
   padding: 0 10px;
   height: 33px;
   width: 160px;
-  background-color: #232f3e;
+  background-color: #374962;
   border: 1px solid #cccccc;
   transition: all 0.3s;
   :hover {

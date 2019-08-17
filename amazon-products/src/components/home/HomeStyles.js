@@ -17,7 +17,7 @@ export const PageTitle = styled.h1`
 
 export const PageSubtitle = styled.h2`
   text-align: center;
-  font-size: 450px;
+  font-size: 45px;
 `;
 
 export const PageInfo = styled.p`

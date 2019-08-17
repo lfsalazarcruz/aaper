@@ -24,9 +24,7 @@ import {
   FieldContainer
 } from "./AppStyles";
 
-import products20190811 from "./amazonLists/productData-2019-08-11.json";
-import products20190814 from "./amazonLists/productData-2019-08-14.json";
-import products20190815 from "./amazonLists/productData-2019-08-15.json";
+import products20190817 from "./amazonLists/productData-2019-08-17.json";
 
 class App extends Component {
   constructor(props) {
@@ -52,8 +50,8 @@ class App extends Component {
     } else {
       this.setState({
         selectedCategory: e.target.value,
-        categoryList: products20190815[e.target.value],
-        filtered: products20190815[e.target.value]
+        categoryList: products20190817[e.target.value],
+        filtered: products20190817[e.target.value]
       });
     }
   };
@@ -91,7 +89,7 @@ class App extends Component {
               onChange={this.selectCategory}
             >
               <option value="0">Select category</option>
-              {Object.keys(products20190815).map((category, index) => {
+              {Object.keys(products20190817).map((category, index) => {
                 return (
                   <option key={index} value={category}>
                     {category}

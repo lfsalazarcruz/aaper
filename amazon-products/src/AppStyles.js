@@ -23,7 +23,7 @@ export const ProductCellPosition = styled.p`
   width: 70px;
   text-align: center;
   padding: 3px;
-  margin: 5px 0;
+  margin: 5px;
   font-size: 14px;
 `;
 
@@ -43,7 +43,7 @@ export const ProductCellTitle = styled.p`
 export const AmazonLink = styled.a`
   font-size: 14px;
   text-decoration: none;
-  background-color: #23a6ff;
+  background-color: #3399fe;
   color: #ffffff;
   width: 70px;
   text-align: center;
@@ -52,13 +52,12 @@ export const AmazonLink = styled.a`
   border-radius: 3px;
   transition: all 0.3s;
   :hover {
-    background-color: #3399fe;
+    background-color: #208cf7;
   }
 `;
 
 export const ProductCellRating = styled.p`
   width: 130px;
-  padding: 3px;
   margin: 5px 0;
   text-align: center;
   font-size: 14px;
@@ -66,7 +65,6 @@ export const ProductCellRating = styled.p`
 
 export const ProductCellReview = styled.p`
   width: 10%;
-  padding: 3px;
   margin: 5px 0;
   text-align: right;
   font-size: 14px;
@@ -74,8 +72,7 @@ export const ProductCellReview = styled.p`
 
 export const ProductCellPrice = styled.p`
   width: 10%;
-  padding: 3px;
-  margin: 5px 0;
+  margin: 5px 10px;
   text-align: right;
   font-size: 14px;
 `;
@@ -134,24 +131,35 @@ export const ProductCellContainer = styled.p`
   font-size: 13px;
   margin: auto 30px;
   padding: 5px 0;
+  @media (max-width: 850px) {
+    width: 140px;
+  }
+  @media (max-width: 500px) {
+    width: 120px;
+  }
 `;
 
 export const ProductCellImage = styled.img`
   width: 100px;
   height: 100px;
+  @media (max-width: 500px) {
+    width: 70px;
+    height: 70px;
+  }
 `;
 
 export const CategoryTitle = styled.h1`
   font-size: 14px;
   margin: 0;
-  padding: 7px 0 3px;
+  padding-top: 7px;
+  padding-bottom: 3px;
   margin-left: 8px;
 `;
 
 export const FieldContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #1b8cff;
+  background-color: #6c7c8c;
   color: #ffffff;
   margin: 10px 10px 0;
 `;

@@ -6,7 +6,7 @@ class Home extends Component {
     return (
       <HomeContainer>
         <PageTitle>Welcome to Amazon Scrapy!</PageTitle>
-        {/* <PageSubtitle>Amazon Best Sellers</PageSubtitle> */}
+        <PageSubtitle>Amazon Best Sellers</PageSubtitle>
         <PageInfo>
           Daily updates of Amazon's most popular products based on sales.
         </PageInfo>

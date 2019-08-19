@@ -40,9 +40,14 @@ const urls = require("./urls.js");
       results = [];
     }
   }
-  let currentDate = new Date().toISOString().slice(0, 10);
+
+  let today = new Date();
+  let date = today.getFullYear() + (today.getMonth() + 1) + today.getDate();
+  let time = today.getHours() + ":" + today.getMinutes();
+  let dateTime = date + "-" + time;
+
   fs.writeFileSync(
-    `./amazonLists/productData-${currentDate}.json`,
+    `./amazonLists/productData-${dateTime}.json`,
     JSON.stringify(obj),
     "utf-8"
   );

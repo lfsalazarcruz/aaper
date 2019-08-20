@@ -3,6 +3,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const db = require("./lib/db");
+require("./lib/cron");
 
 const app = express();
 

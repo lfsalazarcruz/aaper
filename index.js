@@ -1,9 +1,21 @@
 const express = require("express");
-require("./lib/cron");
+const cors = require("cors");
+const helmet = require("helmet");
+const morgan = require("morgan");
+const db = require("./lib/db");
 
 const app = express();
 
-app.get("/scrape", async (req, res, next) => {});
+app.use(cors());
+app.use(helmet());
+app.use(morgan());
+
+app.get("/data", async (req, res, next) => {
+  // Get scrape data
+  const scrapes = db.get("scrapes").value();
+  // respond with JSON
+  res.json(scrapes);
+});
 
 const PORT = process.env.PORT || 8080;
 

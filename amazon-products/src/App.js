@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Home from "./components/home/Home";
+import axios from "axios";
 import {
   SearchbarContainer,
   NavbarTitle,
@@ -24,8 +25,6 @@ import {
   FieldContainer
 } from "./AppStyles";
 
-import products20190817 from "./amazonLists/productData-2019-08-17.json";
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -35,8 +34,27 @@ class App extends Component {
       filtered: [],
       searchTerm: "",
       displayItem: false,
-      itemSelected: {}
+      itemSelected: {},
+      categories: [],
+      dateUdpated: ""
     };
+  }
+
+  componentDidMount() {
+    axios
+      .get("http://localhost:8080/data")
+      .then(data => {
+        // Converting milliseconds to date
+        let date = new Date(data.data[data.data.length - 1].date);
+        this.setState({
+          // Selecting the last item in the database array
+          categories: data.data[data.data.length - 1].bestsellers,
+          dateUdpated: date.toString()
+        });
+      })
+      .catch(error => {
+        console.error("Server Error: ", error);
+      });
   }
 
   selectCategory = e => {
@@ -50,8 +68,8 @@ class App extends Component {
     } else {
       this.setState({
         selectedCategory: e.target.value,
-        categoryList: products20190817[e.target.value],
-        filtered: products20190817[e.target.value]
+        categoryList: this.state.categories[e.target.value],
+        filtered: this.state.categories[e.target.value]
       });
     }
   };
@@ -89,7 +107,7 @@ class App extends Component {
               onChange={this.selectCategory}
             >
               <option value="0">Select category</option>
-              {Object.keys(products20190817).map((category, index) => {
+              {Object.keys(this.state.categories).map((category, index) => {
                 return (
                   <option key={index} value={category}>
                     {category}
@@ -104,6 +122,9 @@ class App extends Component {
               <SearchContainer>
                 <CategoryTitle>
                   Category: {this.state.selectedCategory}
+                </CategoryTitle>
+                <CategoryTitle>
+                  Last Update: {this.state.dateUdpated}
                 </CategoryTitle>
                 <SearchInput
                   type="text"

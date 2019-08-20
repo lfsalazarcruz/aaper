@@ -20,8 +20,11 @@
   },
   "homepage": "https://github.com/lfsalazarcruz/aaper#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
+    "helmet": "^3.20.0",
     "lowdb": "^1.0.0",
+    "morgan": "^1.9.1",
     "node-cron": "^2.0.3",
     "puppeteer": "^1.18.0",
     "request-promise": "^4.2.4"

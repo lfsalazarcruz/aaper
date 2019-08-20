@@ -41,8 +41,11 @@ class App extends Component {
   }
 
   componentDidMount() {
+    let URL = "https://amazon-scrappy-backend.herokuapp.com/data";
+    // let URL = "http://localhost:8080/data";
+
     axios
-      .get("http://localhost:8080/data")
+      .get(URL)
       .then(data => {
         // Converting milliseconds to date
         let date = new Date(data.data[data.data.length - 1].date);

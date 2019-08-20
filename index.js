@@ -5,6 +5,8 @@ const app = express();
 
 app.get("/scrape", async (req, res, next) => {});
 
-app.listen(2020, () => {
-  console.log("Server running on PORT 2020");
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, () => {
+  console.log("server is up");
 });

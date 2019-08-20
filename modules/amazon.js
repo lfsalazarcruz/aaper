@@ -1,5 +1,4 @@
 const puppeteer = require("puppeteer");
-const cheerio = require("cheerio");
 
 let browser = null;
 let page = null;
@@ -10,9 +9,7 @@ const BASE_URL = "https://amazon.com/";
 const amazon = {
   initialize: async () => {
     console.log("Starting the scraper...");
-    browser = await puppeteer.launch({
-      headless: false
-    });
+    browser = await puppeteer.launch();
     page = await browser.newPage();
 
     await page.setRequestInterception(true);

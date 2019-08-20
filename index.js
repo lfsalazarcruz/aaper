@@ -1,54 +1,10 @@
-const fs = require("fs");
-const amazon = require("./modules/amazon.js");
-const urls = require("./urls.js");
+const express = require("express");
+require("./lib/cron");
 
-(async () => {
-  await amazon.initialize();
+const app = express();
 
-  let obj = {};
-  let results = [];
+app.get("/scrape", async (req, res, next) => {});
 
-  for (let url of urls) {
-    for (let i = 1; i <= 2; i++) {
-      let productList = await amazon.getListOfProducts(`${url}${i}`);
-
-      results = [...results, ...productList];
-    }
-
-    // Manipulating url string to create the JSON object with the appropriate keys
-    // Slicing the first 36 characters from the URL.
-    let t = url.slice(36);
-    // Finding the index of the substring '/ref'
-    let n = t.indexOf("/ref");
-    // Getting rif off every character after the n variable
-    // And replacing the substring 'zgbs/' with nothing.
-    let s = t.substring(0, n != -1 ? n : s.length).replace("zgbs/", "");
-
-    // Because some of the URLs are not in the same format, we repeat a similar process
-    // If the URL still has a '/'
-    if (s.indexOf("/") !== -1) {
-      // Get the index of char '/'
-      let temp = s.indexOf("/");
-      // Get rid of everything after char '/' and replace '-' with a white space
-      let k = s.substring(0, temp != -1 ? temp : k.length).replace("-", " ");
-      // Create the key
-      obj[k] = results;
-      results = [];
-      // If the URL doesn't have a '/' just create the key
-    } else {
-      obj[s] = results;
-      results = [];
-    }
-  }
-
-  let today = new Date();
-  let date = today.getFullYear() + (today.getMonth() + 1) + today.getDate();
-  let time = today.getHours() + ":" + today.getMinutes();
-  let dateTime = date + "-" + time;
-
-  fs.writeFileSync(
-    `./amazonLists/productData-${dateTime}.json`,
-    JSON.stringify(obj),
-    "utf-8"
-  );
-})();
+app.listen(2020, () => {
+  console.log("Server running on PORT 2020");
+});

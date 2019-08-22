@@ -9,7 +9,11 @@ const BASE_URL = "https://amazon.com/";
 const amazon = {
   initialize: async () => {
     console.log("Starting the scraper...");
-    browser = await puppeteer.launch();
+    browser = await puppeteer.launch({
+      // Check: https://github.com/GoogleChrome/puppeteer/issues/758
+      // Issue with deploying puppeteer on heroku (with resolution)
+      args: ["--no-sandbox", "--disable-setuid-sandbox"]
+    });
     page = await browser.newPage();
 
     await page.setRequestInterception(true);

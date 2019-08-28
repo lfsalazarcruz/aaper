@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+import firebase from "firebase";
 import "./App.css";
 import Home from "./components/home/Home";
-import axios from "axios";
 import {
   SearchbarContainer,
   NavbarTitle,
@@ -25,8 +25,17 @@ import {
   FieldContainer
 } from "./AppStyles";
 
+const config = {
+  apiKey: process.env.REACT_APP_FIREBASE_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
+  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID
+};
+
 class App extends Component {
   constructor(props) {
+    // Initialize Firebase
+    firebase.initializeApp(config);
     super(props);
     this.state = {
       selectedCategory: "",
@@ -41,23 +50,18 @@ class App extends Component {
   }
 
   componentDidMount() {
-    let URL = "https://amazon-scrappy-backend.herokuapp.com/data";
-    // let URL = "http://localhost:8080/data";
+    let ref = firebase.database().ref("/");
 
-    axios
-      .get(URL)
-      .then(data => {
-        // Converting milliseconds to date
-        let date = new Date(data.data[data.data.length - 1].date);
-        this.setState({
-          // Selecting the last item in the database array
-          categories: data.data[data.data.length - 1].bestsellers,
-          dateUdpated: date.toString()
-        });
-      })
-      .catch(error => {
-        console.error("Server Error: ", error);
+    ref.on("value", snapshot => {
+      const data = snapshot.val();
+      let date = new Date(data.data.date);
+
+      this.setState({
+        categories: data.data.scrapes,
+        dateUdpated: date.toString()
       });
+    });
+    console.log("DATA RETRIEVED");
   }
 
   selectCategory = e => {

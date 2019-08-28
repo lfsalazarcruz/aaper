@@ -1,42 +1,29 @@
-const mime = require("mime");
-const keyFilename = "./firebase_key.json";
-const projectId = "scrapy-74bd7";
-const bucketName = "scrapy-74bd7.appspot.com";
+const firebase = require("firebase");
+const dotenv = require("dotenv");
+dotenv.config();
 
-const { Storage } = require("@google-cloud/storage");
-const storage = new Storage({
-  projectId,
-  keyFilename
-});
+const config = {
+  apiKey: process.env.FIREBASE_KEY,
+  authDomain: process.env.FIREBASE_DOMAIN,
+  databaseURL: process.env.FIREBASE_DATABASE,
+  projectId: process.env.FIREBASE_PROJECT_ID
+};
+// Initialize Firebase
+firebase.initializeApp(config);
 
-const bucket = storage.bucket(bucketName);
-
-const filePath = "./amazonLists/productData.json";
-const uploadTo = "amazon_scrapes/productData.json";
-const fileMime = mime.getType(filePath);
-
-async function uploadFirebaseFile() {
-  bucket.upload(
-    filePath,
-    {
-      destination: uploadTo,
-      public: true,
-      metadata: { contentType: fileMime, cacheControl: "public, max-age=300" }
-    },
-    function(err, file) {
-      if (err) {
-        console.log(err);
-        return;
-      }
-      console.log(createPublicFileURL(uploadTo));
-    }
-  );
-
-  function createPublicFileURL(storageName) {
-    return `http://storage.googleapis.com/${bucketName}/${encodeURIComponent(
-      storageName
-    )}`;
-  }
+// Update Firebase database
+function writeData(data) {
+  firebase
+    .database()
+    .ref()
+    .set({
+      data: data
+    });
 }
 
-module.exports = uploadFirebaseFile;
+function disconnectFirebase() {
+  firebase.database().goOffline();
+  console.log("Disconnected.");
+}
+
+module.exports = { writeData, disconnectFirebase };

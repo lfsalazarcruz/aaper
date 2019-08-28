@@ -43,53 +43,68 @@ const amazon = {
     let itemsArray = await page.$$("#zg-ordered-list > li");
     let items = [];
 
-    for (let itemElement of itemsArray) {
-      let place = await itemElement
-        .$eval('span[class="zg-badge-text"]', element => element.innerText)
-        .catch(error => {
-          console.log(error);
-        });
+    for (let item of itemsArray) {
+      let place = (await item.$(
+        'span[class="zg-badge-text"]',
+        element => element.innerText
+      ))
+        ? await item.$eval(
+            'span[class="zg-badge-text"]',
+            element => element.innerText
+          )
+        : null;
 
-      let title = await itemElement
-        .$eval('div[class="p13n-sc-truncated"]', element => element.innerText)
-        .catch(error => {
-          console.log(error);
-        });
+      let title = (await item.$(
+        'div[class="p13n-sc-truncated"]',
+        element => element.innerText
+      ))
+        ? await item.$eval(
+            'div[class="p13n-sc-truncated"]',
+            element => element.innerText
+          )
+        : null;
 
-      let price = await itemElement
-        .$eval('span[class="p13n-sc-price"]', element => element.innerText)
-        .catch(error => {
-          console.log(error);
-        });
+      let price = (await item.$(
+        'span[class="p13n-sc-price"]',
+        element => element.innerText
+      ))
+        ? await item.$eval(
+            'span[class="p13n-sc-price"]',
+            element => element.innerText
+          )
+        : null;
 
-      let rating = await itemElement
-        .$eval('span[class="a-icon-alt"]', element => element.innerText)
-        .catch(error => {
-          console.log(error);
-        });
+      let rating = (await item.$(
+        'span[class="a-icon-alt"]',
+        element => element.innerText
+      ))
+        ? await item.$eval(
+            'span[class="a-icon-alt"]',
+            element => element.innerText
+          )
+        : null;
 
-      let reviews = await itemElement
-        .$eval(
-          'a[class="a-size-small a-link-normal"]',
-          element => element.innerText
-        )
-        .catch(error => {
-          console.log(error);
-        });
+      let reviews = (await item.$(
+        'a[class="a-size-small a-link-normal"]',
+        element => element.innerText
+      ))
+        ? await item.$eval(
+            'a[class="a-size-small a-link-normal"]',
+            element => element.innerText
+          )
+        : null;
 
-      let image = await itemElement
-        .$eval("img", element => element.getAttribute("src"))
-        .catch(error => {
-          console.log(error);
-        });
+      let image = (await item.$("img", element => element.getAttribute("src")))
+        ? await item.$eval("img", element => element.getAttribute("src"))
+        : null;
 
-      let url = await itemElement
-        .$eval('a[class="a-link-normal"]', element =>
-          element.getAttribute("href")
-        )
-        .catch(error => {
-          console.log(error);
-        });
+      let url = (await item.$('a[class="a-link-normal"]', element =>
+        element.getAttribute("href")
+      ))
+        ? await item.$eval('a[class="a-link-normal"]', element =>
+            element.getAttribute("href")
+          )
+        : null;
 
       items.push({
         place,

@@ -20,15 +20,13 @@
   },
   "homepage": "https://github.com/lfsalazarcruz/aaper#readme",
   "dependencies": {
-    "@google-cloud/storage": "^3.2.0",
+    "@react-firebase/database": "^0.3.10",
     "cors": "^2.8.5",
+    "dotenv": "^8.1.0",
     "express": "^4.17.1",
-    "fs": "^0.0.1-security",
+    "firebase": "^6.4.2",
     "helmet": "^3.20.0",
-    "lowdb": "^1.0.0",
-    "mime": "^2.4.4",
     "morgan": "^1.9.1",
-    "node-cron": "^2.0.3",
     "puppeteer": "^1.18.0",
     "request-promise": "^4.2.4"
   },

@@ -11,13 +11,30 @@ const config = {
 // Initialize Firebase
 firebase.initializeApp(config);
 
-// Update Firebase database
+// Update 'previous' key with 'current' key values.
+function setPreviousData() {
+  let ref = firebase.database().ref("/");
+  const data = null;
+
+  ref.on("value", snapshot => {
+    data = snapshot.val();
+  });
+
+  firebase
+    .database()
+    .ref()
+    .set({
+      previous: data.data
+    });
+}
+
+// Update Firebase current database
 function writeData(data) {
   firebase
     .database()
     .ref()
     .set({
-      data: data
+      current: data
     });
 }
 
@@ -26,4 +43,4 @@ function disconnectFirebase() {
   console.log("Disconnected.");
 }
 
-module.exports = { writeData, disconnectFirebase };
+module.exports = { writeData, disconnectFirebase, setPreviousData };

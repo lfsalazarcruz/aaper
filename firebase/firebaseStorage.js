@@ -12,25 +12,25 @@ const config = {
 firebase.initializeApp(config);
 
 // Update 'previous' key with 'current' key values.
-function setPreviousData() {
+async function setPreviousData() {
   let ref = firebase.database().ref("/");
 
   ref.on("value", snapshot => {
     const data = snapshot.val();
     console.log("===========> Here is the data:", data.data);
 
-    // firebase
-    //   .database()
-    //   .ref()
-    //   .set({
-    //     previous: data.data
-    //   });
+    await firebase
+      .database()
+      .ref()
+      .set({
+        previous: data.data
+      });
   });
 }
 
 // Update Firebase current database
-function writeData(data) {
-  firebase
+async function writeData(data) {
+  await firebase
     .database()
     .ref()
     .set({
@@ -38,8 +38,8 @@ function writeData(data) {
     });
 }
 
-function disconnectFirebase() {
-  firebase.database().goOffline();
+async function disconnectFirebase() {
+  await firebase.database().goOffline();
   console.log("Disconnected.");
 }
 

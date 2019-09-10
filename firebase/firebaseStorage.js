@@ -31,23 +31,29 @@ firebase.initializeApp(config);
 const firebaseMethods = {
   setPreviousData: async () => {
     let ref = firebase.database().ref("/");
-    // let data = null;
+    let data;
 
     // ref.on("value", snapshot => {
     //   data = snapshot.val();
     // });
 
-    let prev = ref.on("value", snapshot => snapshot.val());
+    ref.on(
+      "value",
+      function(snapshot) {
+        console.log("Here ===========", snapshot.val());
+        data = snapshot.val();
+      },
+      function(errorObject) {
+        console.log("The read failed: " + errorObject.code);
+      }
+    );
 
-    // console.log("===========> Here is the data: ", data.data);
-    console.log("===========> Here is prev: ", prev);
-
-    firebase
-      .database()
-      .ref()
-      .set({
-        previous: prev.data
-      });
+    // firebase
+    //   .database()
+    //   .ref()
+    //   .set({
+    //     previous: data || null
+    //   });
   },
 
   writeData: async data => {

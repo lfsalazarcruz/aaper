@@ -15,19 +15,20 @@ firebase.initializeApp(config);
 async function setPreviousData() {
   let ref = firebase.database().ref("/");
 
-  async () =>  {
+  (async () => {
     ref.on("value", snapshot => {
-    const data = snapshot.val();
-    console.log("===========> Here is the data:", data.data);
+      const data =  await snapshot.val();
+      console.log("===========> Here is the data:", data.data);
 
-    await firebase
-      .database()
-      .ref()
-      .set({
-        previous: data.data
-      });
-  });
-}}
+      await firebase
+        .database()
+        .ref()
+        .set({
+          previous: data.data
+        });
+    });
+  })();
+}
 
 // Update Firebase current database
 async function writeData(data) {
@@ -40,7 +41,7 @@ async function writeData(data) {
 }
 
 async function disconnectFirebase() {
-  await firebase.database().goOffline();
+ await firebase.database().goOffline();
   console.log("Disconnected.");
 }
 

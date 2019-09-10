@@ -14,18 +14,17 @@ firebase.initializeApp(config);
 // Update 'previous' key with 'current' key values.
 function setPreviousData() {
   let ref = firebase.database().ref("/");
-  const data = null;
 
   ref.on("value", snapshot => {
-    data = snapshot.val();
-  });
+    const data = snapshot.val();
 
-  firebase
-    .database()
-    .ref()
-    .set({
-      previous: data.data
-    });
+    firebase
+      .database()
+      .ref()
+      .set({
+        previous: data.data
+      });
+  });
 }
 
 // Update Firebase current database
@@ -34,7 +33,7 @@ function writeData(data) {
     .database()
     .ref()
     .set({
-      current: data
+      data: data
     });
 }
 

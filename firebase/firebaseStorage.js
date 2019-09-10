@@ -30,19 +30,17 @@ firebase.initializeApp(config);
 
 const firebaseMethods = {
   setPreviousData: async () => {
-    let ref = await firebase.database().ref("/data");
-    let prev = (await ref.on("value", snapshot => snapshot.val()))
-      ? await ref.on("value", snapshot => snapshot.val())
-      : null;
-
-    console.log("===========> Here is the data:", prev);
-
-    firebase
-      .database()
-      .ref()
-      .set({
-        previous: prev
-      });
+    ref.on("value", snapshot => {
+      const data =  await snapshot.val();
+      console.log("===========> Here is the data:", data.data);
+  
+      firebase
+        .database()
+        .ref()
+        .set({
+          previous: data.data
+        });
+    });
   },
 
   writeData: async data => {

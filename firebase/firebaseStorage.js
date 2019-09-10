@@ -31,18 +31,23 @@ firebase.initializeApp(config);
 const firebaseMethods = {
   setPreviousData: async () => {
     let ref = firebase.database().ref("/");
+    let data = null;
 
     ref.on("value", snapshot => {
-      const data = snapshot.val();
-      console.log("===========> Here is the data:", data.data);
-
-      firebase
-        .database()
-        .ref()
-        .set({
-          previous: data.data
-        });
+      data = snapshot.val();
     });
+
+    let prev = ref.on("value", snapshot => snapshot.val());
+
+    console.log("===========> Here is the data: ", data.data);
+    console.log("===========> Here is prev: ", prev);
+
+    firebase
+      .database()
+      .ref()
+      .set({
+        previous: data.data
+      });
   },
 
   writeData: async data => {

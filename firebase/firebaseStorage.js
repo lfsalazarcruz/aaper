@@ -15,8 +15,9 @@ firebase.initializeApp(config);
 async function setPreviousData() {
   let ref = firebase.database().ref("/");
 
-  ref.on("value", snapshot => {
-    const data = snapshot.val();
+  async () =>  {
+    ref.on("value", snapshot => {
+    const data = await snapshot.val();
     console.log("===========> Here is the data:", data.data);
 
     await firebase
@@ -26,7 +27,7 @@ async function setPreviousData() {
         previous: data.data
       });
   });
-}
+}}
 
 // Update Firebase current database
 async function writeData(data) {

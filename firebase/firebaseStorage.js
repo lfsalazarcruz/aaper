@@ -19,11 +19,13 @@ async function setPreviousData() {
     const data = snapshot.val();
     console.log("===========> Here is the data:", data.data);
 
+    let prev = data.data;
+
     firebase
       .database()
       .ref()
       .set({
-        previous: data.data
+        previous: prev
       });
   });
 }

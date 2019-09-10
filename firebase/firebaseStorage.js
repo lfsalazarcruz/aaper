@@ -33,13 +33,13 @@ const firebaseMethods = {
     let ref = firebase.database().ref("/");
     let data = null;
 
-    ref.on("value", snapshot => {
-      data = snapshot.val();
-    });
+    // ref.on("value", snapshot => {
+    //   data = snapshot.val();
+    // });
 
     let prev = ref.on("value", snapshot => snapshot.val());
 
-    console.log("===========> Here is the data: ", data.data);
+    // console.log("===========> Here is the data: ", data.data);
     console.log("===========> Here is prev: ", prev);
 
     firebase

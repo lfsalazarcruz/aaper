@@ -17,13 +17,14 @@ function setPreviousData() {
 
   ref.on("value", snapshot => {
     const data = snapshot.val();
+    console.log("===========> Here is the data:", data.data);
 
-    firebase
-      .database()
-      .ref()
-      .set({
-        previous: data.data
-      });
+    // firebase
+    //   .database()
+    //   .ref()
+    //   .set({
+    //     previous: data.data
+    //   });
   });
 }
 

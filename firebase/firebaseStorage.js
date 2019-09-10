@@ -31,7 +31,7 @@ firebase.initializeApp(config);
 const firebaseMethods = {
   setPreviousData: async () => {
     let ref = firebase.database().ref("/");
-    let data = null;
+    // let data = null;
 
     // ref.on("value", snapshot => {
     //   data = snapshot.val();
@@ -46,7 +46,7 @@ const firebaseMethods = {
       .database()
       .ref()
       .set({
-        previous: data.data
+        previous: prev.data
       });
   },
 

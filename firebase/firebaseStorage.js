@@ -30,6 +30,8 @@ firebase.initializeApp(config);
 
 const firebaseMethods = {
   setPreviousData: async () => {
+    let ref = firebase.database().ref("/");
+
     ref.on("value", snapshot => {
       const data = snapshot.val();
       console.log("===========> Here is the data:", data.data);

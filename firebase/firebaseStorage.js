@@ -36,21 +36,19 @@ const firebaseMethods = {
       const data = snapshot.val();
       console.log("Data here ==========>", data.data);
 
-      if (data) {
-        firebase
-          .database()
-          .ref()
-          .set({
-            previous: data.data
-          });
-      }
+      firebase
+        .database()
+        .ref("previous/")
+        .set({
+          previous: data.data
+        });
     });
   },
 
   writeData: async data => {
     firebase
       .database()
-      .ref()
+      .ref("data/")
       .set({
         data: data
       });

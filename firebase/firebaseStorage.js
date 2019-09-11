@@ -29,27 +29,26 @@ firebase.initializeApp(config);
 // }
 
 const firebaseMethods = {
-  setPreviousData: async () => {
+  getFirebaseData: async () => {
     let ref = firebase.database().ref("/");
 
-    let data = ref.on(
-      "value",
-      snapshot => {
-        return snapshot.val();
-      },
-      errorObject => {
-        console.log("The read failed: " + errorObject.code);
-      }
-    );
+    ref.on("value", snapshot => {
+      data = snapshot.val();
 
-    console.log("Here ===========", data);
+      return data;
+    });
+  },
 
-    // firebase
-    //   .database()
-    //   .ref()
-    //   .set({
-    //     previous: data
-    //   });
+  setPreviousData: async () => {
+    let data = await this.getFirebaseData();
+    console.log("Data here ==========>", data);
+
+    firebase
+      .database()
+      .ref()
+      .set({
+        previous: data
+      });
   },
 
   writeData: async data => {

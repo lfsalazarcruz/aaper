@@ -32,7 +32,7 @@ const firebaseMethods = {
   setPreviousData: async () => {
     let ref = firebase.database().ref("/");
 
-    ref.on("value", snapshot => {
+    ref.once("value", snapshot => {
       const data = snapshot.val();
       console.log("Data here ==========>", data);
 
@@ -40,8 +40,6 @@ const firebaseMethods = {
         ref.set({
           previous: data
         });
-
-        return;
       }
     });
   },

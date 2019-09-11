@@ -50,10 +50,13 @@ const firebaseMethods = {
     // Fetching one snapshot of the Firebase DB and updating the 'previous' key with the current 'data' key.
     ref.once("value", snapshot => {
       const data = snapshot.val();
+      console.log("snapshot========>", data);
       const currentData = this.compareProductKeys(
         data.previous.scrapes,
         data.data.scrapes
       );
+
+      console.log("======> current data: ", currentData);
 
       firebase
         .database()
@@ -68,7 +71,7 @@ const firebaseMethods = {
   compareProductKeys: async (prev, curr) => {
     for (let key in prev) {
       if (curr.hasOwnProperty(key)) {
-        compareItemPosition(prev[key], curr[key]);
+        await compareItemPosition(prev[key], curr[key]);
       }
     }
     return objb;

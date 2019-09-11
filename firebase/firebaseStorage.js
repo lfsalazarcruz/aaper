@@ -57,9 +57,9 @@ const firebaseMethods = {
 
       firebase
         .database()
-        .ref("data/")
+        .ref()
         .update({
-          scrapes: currentData
+          data: currentData
         });
     });
   },

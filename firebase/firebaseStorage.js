@@ -47,8 +47,10 @@ const firebaseMethods = {
           .database()
           .ref()
           .set({
-            previous: data
+            previous: data.data
           });
+
+        return;
       },
       function(errorObject) {
         console.log("The read failed: " + errorObject.code);

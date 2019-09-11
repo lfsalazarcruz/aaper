@@ -40,11 +40,11 @@ const firebaseMethods = {
     ref
       .on(
         "value",
-        function(snapshot) {
-          console.log("Here ===========", snapshot.val());
-          data = snapshot.val();
+        async function(snapshot) {
+          data = await snapshot.val();
+          console.log("Here ===========", data);
         },
-        function(errorObject) {
+        async function(errorObject) {
           console.log("The read failed: " + errorObject.code);
         }
       )

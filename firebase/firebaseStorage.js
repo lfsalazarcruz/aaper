@@ -50,14 +50,12 @@ const firebaseMethods = {
       const data = snapshot.val();
       console.log("Data here ==========>", data);
 
-      firebase
-        .database()
-        .ref()
-        .set({
-          previous: data
-        });
-
-      return;
+      // firebase
+      //   .database()
+      //   .ref()
+      ref.set({
+        previous: data
+      });
     });
   },
 

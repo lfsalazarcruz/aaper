@@ -41,20 +41,13 @@ const firebaseMethods = {
       "value",
       snapshot => {
         data = snapshot.val();
-        console.log("Here ===========", data);
-      },
-      () => {
-        firebase
-          .database()
-          .ref()
-          .set({
-            previous: data.data
-          });
       },
       errorObject => {
         console.log("The read failed: " + errorObject.code);
       }
     );
+
+    console.log("Here ===========", data);
 
     // firebase
     //   .database()

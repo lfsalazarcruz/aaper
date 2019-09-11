@@ -29,13 +29,17 @@ firebase.initializeApp(config);
 // }
 
 async function getFirebaseData() {
-  let ref = firebase.database().ref("/");
+  try {
+    let ref = firebase.database().ref("/");
 
-  ref.on("value", snapshot => {
-    data = snapshot.val();
+    ref.on("value", snapshot => {
+      data = snapshot.val();
 
-    return data;
-  });
+      return data;
+    });
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 const firebaseMethods = {

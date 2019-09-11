@@ -37,32 +37,28 @@ const firebaseMethods = {
     //   data = snapshot.val();
     // });
 
-    ref.on(
-      "value",
-      function(snapshot) {
-        console.log("Here ===========", snapshot.val());
-        data = snapshot.val();
-
+    ref
+      .on(
+        "value",
+        function(snapshot) {
+          console.log("Here ===========", snapshot.val());
+          data = snapshot.val();
+        },
+        function(errorObject) {
+          console.log("The read failed: " + errorObject.code);
+        }
+      )
+      .then(
         firebase
           .database()
           .ref()
           .set({
             previous: data.data
-          });
-
-        return;
-      },
-      function(errorObject) {
-        console.log("The read failed: " + errorObject.code);
-      }
-    );
-
-    // firebase
-    //   .database()
-    //   .ref()
-    //   .set({
-    //     previous: data || null
-    //   });
+          })
+      )
+      .catch(error => {
+        console.log("ERROR!!!: ", error);
+      });
   },
 
   writeData: async data => {

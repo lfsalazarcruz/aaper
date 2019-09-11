@@ -38,7 +38,7 @@ const firebaseMethods = {
 
       firebase
         .database()
-        .ref("previous/")
+        .ref()
         .update({
           previous: data.data
         });
@@ -48,7 +48,7 @@ const firebaseMethods = {
   writeData: async data => {
     firebase
       .database()
-      .ref("data/")
+      .ref()
       .update({
         data: data
       });

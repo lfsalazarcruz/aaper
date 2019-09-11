@@ -44,15 +44,21 @@ async function getFirebaseData() {
 
 const firebaseMethods = {
   setPreviousData: async () => {
-    let data = await getFirebaseData();
-    console.log("Data here ==========>", data);
+    let ref = firebase.database().ref("/");
 
-    firebase
-      .database()
-      .ref()
-      .set({
-        previous: data
-      });
+    ref.on("value", snapshot => {
+      const data = snapshot.val();
+      console.log("Data here ==========>", data);
+
+      firebase
+        .database()
+        .ref()
+        .set({
+          previous: data
+        });
+
+      return;
+    });
   },
 
   writeData: async data => {

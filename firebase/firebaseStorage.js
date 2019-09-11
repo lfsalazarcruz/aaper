@@ -42,6 +42,13 @@ const firebaseMethods = {
       function(snapshot) {
         console.log("Here ===========", snapshot.val());
         data = snapshot.val();
+
+        firebase
+          .database()
+          .ref()
+          .set({
+            previous: data
+          });
       },
       function(errorObject) {
         console.log("The read failed: " + errorObject.code);

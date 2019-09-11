@@ -28,17 +28,17 @@ firebase.initializeApp(config);
 //     });
 // }
 
+async function getFirebaseData() {
+  let ref = firebase.database().ref("/");
+
+  ref.on("value", snapshot => {
+    data = snapshot.val();
+
+    return data;
+  });
+}
+
 const firebaseMethods = {
-  getFirebaseData: async () => {
-    let ref = firebase.database().ref("/");
-
-    ref.on("value", snapshot => {
-      data = snapshot.val();
-
-      return data;
-    });
-  },
-
   setPreviousData: async () => {
     let data = await getFirebaseData();
     console.log("Data here ==========>", data);

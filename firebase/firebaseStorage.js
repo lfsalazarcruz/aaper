@@ -39,7 +39,7 @@ const firebaseMethods = {
       firebase
         .database()
         .ref("previous/")
-        .set({
+        .update({
           previous: data.data
         });
     });
@@ -49,7 +49,7 @@ const firebaseMethods = {
     firebase
       .database()
       .ref("data/")
-      .set({
+      .update({
         data: data
       });
   }

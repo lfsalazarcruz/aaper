@@ -40,7 +40,7 @@ const firebaseMethods = {
   },
 
   setPreviousData: async () => {
-    let data = await this.getFirebaseData();
+    let data = await getFirebaseData();
     console.log("Data here ==========>", data);
 
     firebase

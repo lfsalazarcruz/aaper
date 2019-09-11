@@ -31,16 +31,11 @@ firebase.initializeApp(config);
 const firebaseMethods = {
   setPreviousData: async () => {
     let ref = firebase.database().ref("/");
-    let data = null;
 
-    // ref.on("value", snapshot => {
-    //   data = snapshot.val();
-    // });
-
-    ref.on(
+    let data = ref.on(
       "value",
       snapshot => {
-        data = snapshot.val();
+        return snapshot.val();
       },
       errorObject => {
         console.log("The read failed: " + errorObject.code);

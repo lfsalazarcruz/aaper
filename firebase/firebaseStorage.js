@@ -34,12 +34,15 @@ const firebaseMethods = {
 
     ref.once("value", snapshot => {
       const data = snapshot.val();
-      console.log("Data here ==========>", data);
+      console.log("Data here ==========>", data.data);
 
       if (data) {
-        ref.set({
-          previous: data
-        });
+        firebase
+          .database()
+          .ref()
+          .set({
+            previous: data.data
+          });
       }
     });
   },

@@ -28,20 +28,6 @@ firebase.initializeApp(config);
 //     });
 // }
 
-async function getFirebaseData() {
-  try {
-    let ref = firebase.database().ref("/");
-
-    ref.on("value", snapshot => {
-      data = snapshot.val();
-
-      return data;
-    });
-  } catch (err) {
-    console.log(err);
-  }
-}
-
 const firebaseMethods = {
   setPreviousData: async () => {
     let ref = firebase.database().ref("/");
@@ -50,12 +36,13 @@ const firebaseMethods = {
       const data = snapshot.val();
       console.log("Data here ==========>", data);
 
-      // firebase
-      //   .database()
-      //   .ref()
-      ref.set({
-        previous: data
-      });
+      if (data) {
+        ref.set({
+          previous: data
+        });
+
+        return;
+      }
     });
   },
 

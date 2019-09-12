@@ -83,7 +83,8 @@ export const SearchbarContainer = styled.div`
   width: 100%;
   position: fixed;
   top: 0;
-  background-color: #eaecef;
+  background-color: #eef3f7;
+  // background-color: #eaecef;
 `;
 
 export const SearchInnerContainer = styled.div`

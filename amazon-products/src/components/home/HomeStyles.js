@@ -7,6 +7,8 @@ export const HomeContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   color: #576574;
+  // background-color: white;
+  background-color: #eef3f7;
   @media (max-width: 500px) {
     height: 100%;
   }

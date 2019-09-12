@@ -12,9 +12,7 @@ const config = {
 firebase.initializeApp(config);
 
 // Helper function 1: compare if two objs have the same keys, if it does, it runs the next helper function
-// Helper function 2: compare two sorted arrays and add a counter key, value to the current array of objs
-
-const helperMethods = {
+const helperMethod1 = {
   compareProductKeys: async (prev, curr) => {
     for (let key in prev) {
       if (curr.hasOwnProperty(key)) {
@@ -25,6 +23,7 @@ const helperMethods = {
   }
 };
 
+// Helper function 2: compare two sorted arrays and add a counter key, value to the current array of objs
 const helperMethod2 = {
   compareItemPosition: async (prev, curr) => {
     for (let itema of prev) {
@@ -39,6 +38,21 @@ const helperMethod2 = {
       }
     }
     return curr;
+  }
+};
+
+const helperMethod3 = {
+  countCounterKeys: async obj => {
+    let results = [];
+
+    for (let key in obj) {
+      for (let item of obj[key]) {
+        if (item.counter > 0) {
+          results.push({ ...item, category: key });
+        }
+      }
+    }
+    return results;
   }
 };
 
@@ -70,11 +84,13 @@ const firebaseMethods = {
       });
   },
 
+  // Disconnect firebase from server
   disconnectFirebase: async () => {
     firebase.database().goOffline();
     console.log("Disconnected.");
   },
 
+  // Counts positions escalated by a product, relative to the previous scrape
   addCounterKey: async () => {
     let ref = firebase.database().ref("/");
 
@@ -82,7 +98,7 @@ const firebaseMethods = {
     ref.once("value", async snapshot => {
       const curdata = snapshot.val();
 
-      let cur = await helperMethods.compareProductKeys(
+      let cur = await helperMethod1.compareProductKeys(
         curdata.previous.scrapes,
         curdata.data.scrapes
       );
@@ -92,6 +108,25 @@ const firebaseMethods = {
         .ref("/data/")
         .update({
           scrapes: cur
+        });
+    });
+  },
+
+  // Push an array of products that escalated more than 1 spot on the list to Firebase DB.
+  addEscalatedProducts: async () => {
+    let ref = firebase.database().ref("/");
+
+    ref.once("value", async snapshot => {
+      const curdata = snapshot.val();
+      console.log(curdata);
+
+      let cur = await helperMethod3.countCounterKeys(curdata.data.scrapes);
+
+      firebase
+        .database()
+        .ref("/data/")
+        .update({
+          escalated: cur
         });
     });
   }

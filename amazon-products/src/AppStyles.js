@@ -169,3 +169,15 @@ export const SearchContainer = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+
+export const ProductPositionContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 20px;
+`;
+
+export const CurrentPosition = styled.p`
+  margin: 0;
+  font-weight: bold;
+`;

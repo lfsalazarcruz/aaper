@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import firebase from "firebase";
 import "./App.css";
 import Home from "./components/home/Home";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronUp, faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import {
   SearchbarContainer,
   NavbarTitle,
@@ -22,7 +24,9 @@ import {
   ProductCellImage,
   AmazonLink,
   CategoryTitle,
-  FieldContainer
+  FieldContainer,
+  ProductPositionContainer,
+  CurrentPosition
 } from "./AppStyles";
 
 const config = {
@@ -61,7 +65,6 @@ class App extends Component {
         dateUdpated: date.toString()
       });
     });
-    console.log("DATA RETRIEVED");
   }
 
   selectCategory = e => {
@@ -103,6 +106,33 @@ class App extends Component {
   };
 
   render() {
+    const arrowDirection = number => {
+      if (number > 0) {
+        return (
+          <FontAwesomeIcon icon={faChevronUp} style={{ fontWeight: "bold" }} />
+        );
+      } else if (number < 0) {
+        return (
+          <FontAwesomeIcon
+            icon={faChevronDown}
+            style={{ fontWeight: "bold" }}
+          />
+        );
+      } else {
+        return null;
+      }
+    };
+
+    const getFontColor = number => {
+      if (number > 0) {
+        return "green";
+      } else if (number < 0) {
+        return "red";
+      } else {
+        return;
+      }
+    };
+
     return (
       <div className="App">
         <SearchbarContainer>
@@ -175,7 +205,17 @@ class App extends Component {
                 key={product.place}
                 onClick={this.extendProduct}
               >
-                <ProductCellPosition>{product.place}</ProductCellPosition>
+                <ProductPositionContainer
+                  style={{ color: getFontColor(product.counter) }}
+                >
+                  <ProductCellPosition>{product.place}</ProductCellPosition>
+                  {arrowDirection(product.counter)}
+                  {product.counter > 0 ? (
+                    <CurrentPosition>+{product.counter}</CurrentPosition>
+                  ) : product.counter < 0 ? (
+                    <CurrentPosition>{product.counter}</CurrentPosition>
+                  ) : null}
+                </ProductPositionContainer>
                 <ProductTitleContainer>
                   <ProductCellTitle>{product.title}</ProductCellTitle>
                   <AmazonLink

@@ -118,13 +118,13 @@ const firebaseMethods = {
 
     ref.once("value", async snapshot => {
       const curdata = snapshot.val();
-      console.log(curdata);
 
       let cur = await helperMethod3.countCounterKeys(curdata.data.scrapes);
+      console.log(cur);
 
       firebase
         .database()
-        .ref("/data/")
+        .ref()
         .update({
           escalated: cur
         });

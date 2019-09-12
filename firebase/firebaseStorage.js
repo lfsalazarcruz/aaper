@@ -11,6 +11,37 @@ const config = {
 // Initialize Firebase
 firebase.initializeApp(config);
 
+// Helper function 1: compare if two objs have the same keys, if it does, it runs the next helper function
+// Helper function 2: compare two sorted arrays and add a counter key, value to the current array of objs
+
+const helperMethods = {
+  compareProductKeys: async (prev, curr) => {
+    for (let key in prev) {
+      if (curr.hasOwnProperty(key)) {
+        await helperMethod2.compareItemPosition(prev[key], curr[key]);
+      }
+    }
+    return curr;
+  }
+};
+
+const helperMethod2 = {
+  compareItemPosition: async (prev, curr) => {
+    for (let itema of prev) {
+      let itemaPosition = prev.indexOf(itema);
+      for (let itemb of curr) {
+        if (itemb.title === itema.title) {
+          let itembPosition = curr.indexOf(itemb);
+          itemb.counter = itemaPosition - itembPosition;
+        } else if (!itemb.hasOwnProperty("counter")) {
+          itemb.counter = 0;
+        }
+      }
+    }
+    return curr;
+  }
+};
+
 const firebaseMethods = {
   // Update 'previous' key with 'current' key values.
   setPreviousData: async () => {
@@ -48,49 +79,21 @@ const firebaseMethods = {
     let ref = firebase.database().ref("/");
 
     // Fetching one snapshot of the Firebase DB and updating the 'previous' key with the current 'data' key.
-    ref.once("value", snapshot => {
-      const data = snapshot.val();
-      console.log("snapshot========>", data);
-      const currentData = this.compareProductKeys(
-        data.previous.scrapes,
-        data.data.scrapes
-      );
+    ref.once("value", async snapshot => {
+      const curdata = snapshot.val();
 
-      console.log("======> current data: ", currentData);
+      let cur = await helperMethods.compareProductKeys(
+        curdata.previous.scrapes,
+        curdata.data.scrapes
+      );
 
       firebase
         .database()
-        .ref()
+        .ref("/data/")
         .update({
-          data: currentData
+          scrapes: cur
         });
     });
-  },
-
-  // Helper function 1: compare if two objs have the same keys, if it does, it runs the next helper function
-  compareProductKeys: async (prev, curr) => {
-    for (let key in prev) {
-      if (curr.hasOwnProperty(key)) {
-        await compareItemPosition(prev[key], curr[key]);
-      }
-    }
-    return objb;
-  },
-
-  // Helper function 2: compare two sorted arrays and add a counter key, value to the current array of objs
-  compareItemPosition: async (prev, curr) => {
-    for (let itema of prev) {
-      let itemaPosition = prev.indexOf(itema);
-      for (let itemb of curr) {
-        if (itemb.title === itema.title) {
-          let itembPosition = curr.indexOf(itemb);
-          itemb.counter = itemaPosition - itembPosition;
-        } else if (!itemb.hasOwnProperty("counter")) {
-          itemb.counter = 0;
-        }
-      }
-    }
-    return curr;
   }
 };
 

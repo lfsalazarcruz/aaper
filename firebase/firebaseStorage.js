@@ -62,10 +62,10 @@ const firebaseMethods = {
     let ref = firebase.database().ref("/");
 
     // Fetching one snapshot of the Firebase DB and updating the 'previous' key with the current 'data' key.
-    ref.once("value", snapshot => {
-      const data = snapshot.val();
+    ref.once("value", async snapshot => {
+      const data = await snapshot.val();
 
-      firebase
+      await firebase
         .database()
         .ref()
         .update({
@@ -76,7 +76,7 @@ const firebaseMethods = {
 
   // Updates 'data' key with the data passed as an argument
   writeData: async data => {
-    firebase
+    await firebase
       .database()
       .ref()
       .update({
@@ -86,7 +86,7 @@ const firebaseMethods = {
 
   // Disconnect firebase from server
   disconnectFirebase: async () => {
-    firebase.database().goOffline();
+    await firebase.database().goOffline();
     console.log("Disconnected.");
   },
 
@@ -96,14 +96,14 @@ const firebaseMethods = {
 
     // Fetching one snapshot of the Firebase DB and updating the 'previous' key with the current 'data' key.
     ref.once("value", async snapshot => {
-      const curdata = snapshot.val();
+      const curdata = await snapshot.val();
 
       let cur = await helperMethod1.compareProductKeys(
         curdata.previous.scrapes,
         curdata.data.scrapes
       );
 
-      firebase
+      await firebase
         .database()
         .ref("/data/")
         .update({
@@ -117,14 +117,12 @@ const firebaseMethods = {
     let ref = firebase.database().ref("/");
 
     ref.once("value", async snapshot => {
-      const curdata = snapshot.val();
-
+      const curdata = await snapshot.val();
       let cur = await helperMethod3.countCounterKeys(curdata.data.scrapes);
-      console.log(cur);
 
-      firebase
+      await firebase
         .database()
-        .ref()
+        .ref("/data/")
         .update({
           escalated: cur
         });

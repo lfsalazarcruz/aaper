@@ -1,6 +1,9 @@
 const colors = {
-  primary: "#374862",
-  secondary: "#637382"
+  primary: "#1F364F",
+  secondary: "#6c7c8c",
+  text: "#637382",
+  button: "#3399fe",
+  buttonHover: "#208cf7"
 };
 
 export default colors;

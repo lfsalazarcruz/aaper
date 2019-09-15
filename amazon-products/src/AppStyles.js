@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import colors from "./constants/colors";
 
 export const ProductTable = styled.div`
   padding: 10px;
@@ -16,7 +17,7 @@ export const ProductRow = styled.div`
   display: flex;
   background-color: #ffffff;
   margin: 1px 0;
-  color: #637382;
+  color: ${colors.text};
 `;
 
 export const ProductCellPosition = styled.p`
@@ -43,7 +44,7 @@ export const ProductCellTitle = styled.p`
 export const AmazonLink = styled.a`
   font-size: 14px;
   text-decoration: none;
-  background-color: #3399fe;
+  background-color: ${colors.button};
   color: #ffffff;
   width: 70px;
   text-align: center;
@@ -52,7 +53,7 @@ export const AmazonLink = styled.a`
   border-radius: 3px;
   transition: all 0.3s;
   :hover {
-    background-color: #208cf7;
+    background-color: ${colors.buttonHover};
   }
 `;
 
@@ -84,12 +85,11 @@ export const SearchbarContainer = styled.div`
   position: fixed;
   top: 0;
   background-color: #eef3f7;
-  // background-color: #eaecef;
 `;
 
 export const SearchInnerContainer = styled.div`
   display: flex;
-  background-color: #374962;
+  background-color: ${colors.primary};
   padding: 5px 10px;
   align-items: center;
 `;
@@ -114,13 +114,13 @@ export const SearchInput = styled.input`
 `;
 
 export const Dropdown = styled.select`
-  color: #cccccc;
+  color: #ffffff;
   font-weight: bold;
   font-size: 12px;
   padding: 0 10px;
   height: 33px;
   width: 160px;
-  background-color: #374962;
+  background-color: ${colors.primary};
   border: 1px solid #cccccc;
   transition: all 0.3s;
   :hover {
@@ -163,7 +163,7 @@ export const CategoryTitle = styled.h1`
 export const FieldContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #6c7c8c;
+  background-color: ${colors.secondary};
   color: #ffffff;
   margin: 10px 10px 0;
 `;

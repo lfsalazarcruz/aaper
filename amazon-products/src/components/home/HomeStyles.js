@@ -2,12 +2,10 @@ import styled from "styled-components";
 
 export const HomeContainer = styled.div`
   width: 100%;
-  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   color: #576574;
-  // background-color: white;
   background-color: #eef3f7;
   @media (max-width: 500px) {
     height: 100%;
@@ -15,7 +13,7 @@ export const HomeContainer = styled.div`
 `;
 
 export const PageTitle = styled.h1`
-  margin: 0 20px 0;
+  margin: 120px 20px 20px;
   text-align: center;
   font-size: 50px;
   @media (max-width: 500px) {

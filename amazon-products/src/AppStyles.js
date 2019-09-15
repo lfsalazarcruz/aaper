@@ -98,6 +98,9 @@ export const NavbarTitle = styled.h1`
   font-size: 16px;
   margin: 10px 20px;
   color: #ffffff;
+  :hover {
+    cursor: pointer;
+  }
 `;
 
 export const SearchInput = styled.input`

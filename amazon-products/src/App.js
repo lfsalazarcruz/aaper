@@ -84,6 +84,15 @@ class App extends Component {
     }
   };
 
+  goHome = e => {
+    this.setState({
+      selectedCategory: "",
+      categoryList: [],
+      filtered: [],
+      searchTerm: ""
+    });
+  };
+
   filterList = e => {
     let currentList = [];
     let newList = [];
@@ -137,7 +146,7 @@ class App extends Component {
       <div className="App">
         <SearchbarContainer>
           <SearchInnerContainer>
-            <NavbarTitle>amazon scrapy</NavbarTitle>
+            <NavbarTitle onClick={this.goHome}>amazon scrapy</NavbarTitle>
             <Dropdown
               name="selectedCategory"
               value={this.state.selectedCategory}

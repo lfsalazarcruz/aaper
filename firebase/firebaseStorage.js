@@ -122,7 +122,7 @@ const firebaseMethods = {
 
       await firebase
         .database()
-        .ref("/data/")
+        .ref()
         .update({
           escalated: cur
         });

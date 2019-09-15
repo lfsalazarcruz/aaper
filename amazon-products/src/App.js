@@ -56,7 +56,7 @@ class App extends Component {
   componentDidMount() {
     let ref = firebase.database().ref("/");
 
-    ref.on("value", snapshot => {
+    ref.once("value", snapshot => {
       const data = snapshot.val();
       let date = new Date(data.data.date);
 

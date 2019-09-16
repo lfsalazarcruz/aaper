@@ -166,6 +166,7 @@ export const FieldContainer = styled.div`
   background-color: ${colors.secondary};
   color: #ffffff;
   margin: 10px 10px 0;
+  // color: #545b60;
 `;
 
 export const SearchContainer = styled.div`

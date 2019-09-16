@@ -41,8 +41,8 @@ const helperMethod2 = {
   }
 };
 
-const helperMethod3 = {
-  countCounterKeys: async obj => {
+const countCounterKeys = obj => {
+  return new Promise((resolve, reject) => {
     let results = [];
 
     for (let key in obj) {
@@ -52,8 +52,23 @@ const helperMethod3 = {
         }
       }
     }
-    return results;
-  }
+
+    let sorted = sortObject(results);
+
+    resolve(sorted);
+    reject(new Error("ERROR: Error while creating a list of sorted objects."));
+  });
+};
+
+// Sorts an object based on their counter key value
+const sortObject = arr => {
+  return new Promise((resolve, reject) => {
+    let sorted = arr.sort((a, b) => {
+      return a.counter > b.counter ? -1 : 1;
+    });
+    resolve(sorted);
+    reject(new Error("ERROR: Error while sorting object."));
+  });
 };
 
 const firebaseMethods = {
@@ -86,6 +101,7 @@ const firebaseMethods = {
 
   // Disconnect firebase from server
   disconnectFirebase: async () => {
+    console.log("Disconnecting Firebase...");
     await firebase.database().goOffline();
     console.log("Disconnected.");
   },
@@ -118,7 +134,8 @@ const firebaseMethods = {
 
     ref.once("value", async snapshot => {
       const curdata = await snapshot.val();
-      let cur = await helperMethod3.countCounterKeys(curdata.data.scrapes);
+      let cur = await countCounterKeys(curdata.data.scrapes);
+      console.log("List created. Updating database...");
 
       await firebase
         .database()
@@ -126,6 +143,8 @@ const firebaseMethods = {
         .update({
           escalated: cur
         });
+
+      console.log("Done");
     });
   }
 };

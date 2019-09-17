@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import firebase from "firebase";
+import config from "./configurations/firebaseConfig";
 import "./App.css";
 import Home from "./components/home/Home";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -29,13 +30,6 @@ import {
   CurrentPosition
 } from "./AppStyles";
 
-const config = {
-  apiKey: process.env.REACT_APP_FIREBASE_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_DOMAIN,
-  databaseURL: process.env.REACT_APP_FIREBASE_DATABASE,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID
-};
-
 class App extends Component {
   constructor(props) {
     // Initialize Firebase
@@ -45,6 +39,7 @@ class App extends Component {
       selectedCategory: "",
       categoryList: [],
       filtered: [],
+      escalated: [],
       searchTerm: "",
       displayItem: false,
       itemSelected: {},
@@ -62,7 +57,8 @@ class App extends Component {
 
       this.setState({
         categories: data.data.scrapes,
-        dateUdpated: date.toString()
+        dateUdpated: date.toString(),
+        escalated: data.escalated
       });
     });
   }

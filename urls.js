@@ -17,7 +17,7 @@ const urls = [
   "https://www.amazon.com/Best-Sellers-Computers-Accessories/zgbs/pc/ref=zg_bs_pg_1?_encoding=UTF8&pg=",
   "https://www.amazon.com/Best-Sellers-Electronics/zgbs/electronics/ref=zg_bs_pg_1?_encoding=UTF8&pg=",
   "https://www.amazon.com/Best-Sellers-Entertainment-Collectibles/zgbs/entertainment-collectibles/ref=zg_bs_pg_1?_encoding=UTF8&pg=",
-  "https://www.amazon.com/Best-Sellers-Gift-Cards/zgbs/gift-cards/ref=zg_bs_pg_1?_encoding=UTF8&pg=",
+  // "https://www.amazon.com/Best-Sellers-Gift-Cards/zgbs/gift-cards/ref=zg_bs_pg_1?_encoding=UTF8&pg=",
   "https://www.amazon.com/Best-Sellers-Grocery-Gourmet-Food/zgbs/grocery/ref=zg_bs_pg_1?_encoding=UTF8&pg=",
   "https://www.amazon.com/Best-Sellers-Handmade/zgbs/handmade/ref=zg_bs_pg_1?_encoding=UTF8&pg=",
   "https://www.amazon.com/Best-Sellers-Health-Personal-Care/zgbs/hpc/ref=zg_bs_pg_1?_encoding=UTF8&pg=",

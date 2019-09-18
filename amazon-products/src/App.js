@@ -158,7 +158,6 @@ class App extends Component {
               })}
             </Dropdown>
           </SearchInnerContainer>
-          {!this.state.selectedCategory ? <Home /> : null}
           {this.state.selectedCategory ? (
             <FieldContainer>
               <SearchContainer>
@@ -202,6 +201,9 @@ class App extends Component {
             </FieldContainer>
           ) : null}
         </SearchbarContainer>
+        {!this.state.selectedCategory ? (
+          <Home escalated={this.state.escalated} />
+        ) : null}
         <ProductTable>
           {this.state.filtered.map((product, index) => {
             return (

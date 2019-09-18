@@ -159,52 +159,51 @@ class App extends Component {
               })}
             </Dropdown>
           </SearchInnerContainer>
-          {this.state.selectedCategory ? (
-            <FieldContainer>
-              <SearchContainer>
-                <CategoryTitle>
-                  Category: {this.state.selectedCategory}
-                </CategoryTitle>
-                <CategoryTitle>
-                  Last Update: {this.state.dateUdpated}
-                </CategoryTitle>
-                <SearchInput
-                  type="text"
-                  name="searchTerm"
-                  onChange={this.filterList}
-                  placeholder="Search item..."
-                />
-              </SearchContainer>
-              <ProductTableFields>
-                <ProductCellPosition style={{ fontWeight: "bolder" }}>
-                  Position
-                </ProductCellPosition>
-                <ProductCellTitle
-                  style={{
-                    fontWeight: "bolder",
-                    textAlign: "center",
-                    width: "40%"
-                  }}
-                >
-                  Product
-                </ProductCellTitle>
-                <ProductCellContainer style={{ fontWeight: "bolder" }} />
-                <ProductCellRating style={{ fontWeight: "bolder" }}>
-                  Rating
-                </ProductCellRating>
-                <ProductCellReview style={{ fontWeight: "bolder" }}>
-                  Reviews
-                </ProductCellReview>
-                <ProductCellPrice style={{ fontWeight: "bolder" }}>
-                  Price
-                </ProductCellPrice>
-              </ProductTableFields>
-            </FieldContainer>
-          ) : null}
         </SearchbarContainer>
         {!this.state.selectedCategory ? (
           <Home escalated={this.state.escalated} />
-        ) : null}
+        ) : (
+          <FieldContainer>
+            <SearchContainer>
+              <CategoryTitle>
+                Category: {this.state.selectedCategory}
+              </CategoryTitle>
+              <CategoryTitle>
+                Last Update: {this.state.dateUdpated}
+              </CategoryTitle>
+              <SearchInput
+                type="text"
+                name="searchTerm"
+                onChange={this.filterList}
+                placeholder="Search item..."
+              />
+            </SearchContainer>
+            <ProductTableFields>
+              <ProductCellPosition style={{ fontWeight: "bolder" }}>
+                Position
+              </ProductCellPosition>
+              <ProductCellTitle
+                style={{
+                  fontWeight: "bolder",
+                  textAlign: "center",
+                  width: "40%"
+                }}
+              >
+                Product
+              </ProductCellTitle>
+              <ProductCellContainer style={{ fontWeight: "bolder" }} />
+              <ProductCellRating style={{ fontWeight: "bolder" }}>
+                Rating
+              </ProductCellRating>
+              <ProductCellReview style={{ fontWeight: "bolder" }}>
+                Reviews
+              </ProductCellReview>
+              <ProductCellPrice style={{ fontWeight: "bolder" }}>
+                Price
+              </ProductCellPrice>
+            </ProductTableFields>
+          </FieldContainer>
+        )}
         <ProductTable>
           {this.state.filtered.map((product, index) => {
             return (

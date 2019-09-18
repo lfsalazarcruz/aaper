@@ -1,11 +1,7 @@
 import styled from "styled-components";
 import colors from "./constants/colors";
 
-export const ProductTable = styled.div`
-  padding: 10px;
-  margin-top: 130px;
-  margin-bottom: 40px;
-`;
+export const ProductTable = styled.div``;
 
 export const ProductTableFields = styled.div`
   display: flex;

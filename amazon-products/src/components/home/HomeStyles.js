@@ -4,24 +4,18 @@ import colors from "../../constants/colors";
 export const HomeContainer = styled.div`
   color: #576574;
   background-color: #eef3f7;
+  background-color: #ffffff;
 `;
 
 export const PageTitle = styled.h1`
   margin: 120px 20px 20px;
   text-align: center;
   font-size: 50px;
-  @media (max-width: 500px) {
-    margin-top: 50px;
-    font-size: 40px;
-  }
 `;
 
 export const PageSubtitle = styled.h2`
   text-align: center;
   font-size: 45px;
-  @media (max-width: 500px) {
-    font-size: 35px;
-  }
 `;
 
 export const PageInfo = styled.p`
@@ -29,23 +23,49 @@ export const PageInfo = styled.p`
   font-size: 40px;
   width: 60%;
   margin: 0 auto;
-  @media (max-width: 500px) {
-    font-size: 30px;
-    width: 70%;
-  }
+`;
+
+export const MidContainer = styled.div`
+  background-color: ${colors.accent};
+  margin-top: 80px;
+`;
+
+export const CarouselTitle = styled.p`
+  margin: 0;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: bold;
+  font-size: 60px;
+  letter-spacing: 2px;
+  color: ${colors.buttonHover};
 `;
 
 export const CarouselContainer = styled.div`
-  margin-top: 80px;
-  margin-bottom: 50px;
-  padding-top: 40px;
   padding-bottom: 40px;
   display: flex;
   flexdirection: row;
   width: 100%;
   overflow-x: scroll;
-  background-color: #c9f527;
   ::-webkit-scrollbar {
     display: none;
   }
+`;
+
+export const Link = styled.a`
+  text-decoration: none;
+  font-weight: bold;
+  color: ${colors.accent};
+  transition: all 0.3s;
+  :hover {
+    text-decoration: line-through;
+  }
+`;
+
+export const Footer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 0;
+  background-color: ${colors.darkPrimary};
+  height: 300px;
 `;

@@ -4,7 +4,11 @@ import {
   PageTitle,
   PageSubtitle,
   PageInfo,
-  CarouselContainer
+  MidContainer,
+  CarouselTitle,
+  CarouselContainer,
+  Footer,
+  Link
 } from "./HomeStyles";
 import ProductCard from "../ProductCard";
 
@@ -16,21 +20,37 @@ const Home = props => {
       <PageInfo>
         Hourly updates of Amazon's most popular products based on sales.
       </PageInfo>
-      <CarouselContainer>
-        {props.escalated.map(product => {
-          return (
-            <ProductCard
-              place={product.place}
-              title={product.title}
-              image={product.image}
-              rating={product.rating}
-              counter={product.counter}
-              category={product.category}
-              url={product.url}
-            />
-          );
-        })}
-      </CarouselContainer>
+      <MidContainer>
+        <CarouselTitle>TRENDING THIS HOUR...</CarouselTitle>
+        <CarouselContainer>
+          {props.escalated.map(product => {
+            return (
+              <ProductCard
+                place={product.place}
+                title={product.title}
+                image={product.image}
+                rating={product.rating}
+                counter={product.counter}
+                category={product.category}
+                url={product.url}
+              />
+            );
+          })}
+        </CarouselContainer>
+      </MidContainer>
+      <Footer>
+        <PageInfo style={{ margin: 0, width: "auto", marginRight: "20px" }}>
+          For more info, email me{" "}
+          <Link
+            href="mailto:amazonscrapyapp@gmail.com"
+            class="contact-link"
+            target="_blank"
+          >
+            here
+          </Link>
+          .
+        </PageInfo>
+      </Footer>
     </HomeContainer>
   );
 };

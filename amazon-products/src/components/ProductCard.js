@@ -2,6 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
+import colors from "../constants/colors";
 
 const CardContainer = styled.div`
   margin-top: 10px;
@@ -14,6 +15,34 @@ const CardContainer = styled.div`
   -webkit-box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.75);
+`;
+
+const InnerContainer = styled.div`
+  width: 220px;
+`;
+
+const ImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+`;
+
+const MidContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 5px;
+  margin-bottom: 5px;
+`;
+
+const Link = styled.a`
+  text-decoration: none;
+  color: ${colors.primary};
+  transition: all 0.3s;
+  :hover {
+    text-decoration: underline;
+  }
 `;
 
 const CardTitle = styled.p`
@@ -37,25 +66,6 @@ const EscalatedPositions = styled.div`
 const Number = styled.p`
   margin: 0;
   padding: 0;
-`;
-
-const InnerContainer = styled.div`
-  width: 220px;
-`;
-
-const ImageContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-`;
-
-const MidContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-top: 5px;
-  margin-bottom: 5px;
 `;
 
 const BottomContainer = styled.div`
@@ -89,7 +99,9 @@ const ProductCard = props => {
             />
             <Number>+{props.counter}</Number>
           </EscalatedPositions>
-          <CardTitle>{props.title}</CardTitle>
+          <Link href={`https://www.amazon.com${props.url}`} target="_blank">
+            <CardTitle>{props.title}</CardTitle>
+          </Link>
         </MidContainer>
         <BottomContainer>
           <Text>{props.category}</Text>

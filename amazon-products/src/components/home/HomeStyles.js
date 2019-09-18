@@ -27,16 +27,19 @@ export const PageInfo = styled.p`
 
 export const MidContainer = styled.div`
   background-color: ${colors.accent};
-  margin-top: 80px;
+  margin-top: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const CarouselTitle = styled.p`
   margin: 0;
-  padding-left: 10px;
-  padding-right: 10px;
   font-weight: bold;
   font-size: 60px;
   letter-spacing: 2px;
+  width: 96%;
   color: ${colors.buttonHover};
 `;
 

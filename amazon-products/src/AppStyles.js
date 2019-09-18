@@ -78,8 +78,6 @@ export const SearchbarContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  position: fixed;
-  top: 0;
   background-color: #eef3f7;
 `;
 

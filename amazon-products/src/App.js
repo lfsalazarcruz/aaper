@@ -54,7 +54,7 @@ class App extends Component {
     ref.once("value", snapshot => {
       const data = snapshot.val();
       let date = new Date(data.data.date);
-      let escalated = data.escalated.slice(0, 20);
+      let escalated = data.escalated.slice(0, 30);
 
       this.setState({
         categories: data.data.scrapes,

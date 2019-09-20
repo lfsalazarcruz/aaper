@@ -1,19 +1,22 @@
 import styled from "styled-components";
 import colors from "./constants/colors";
 
-export const ProductTable = styled.div``;
+export const ProductTable = styled.div`
+  background-color: #2a373b;
+`;
 
 export const ProductTableFields = styled.div`
   display: flex;
   margin: 1px 0;
+  font-weight: normal;
 `;
 
 export const ProductRow = styled.div`
   padding: 8px 0;
   display: flex;
   background-color: #ffffff;
-  margin: 1px 0;
-  color: ${colors.text};
+  margin: 1px 10px;
+  color: ${colors.darkPrimary};
 `;
 
 export const ProductCellPosition = styled.p`
@@ -35,22 +38,21 @@ export const ProductCellTitle = styled.p`
   padding: 3px 5px;
   margin: 5px 0;
   font-size: 14px;
+  text-align: justify;
 `;
 
 export const AmazonLink = styled.a`
-  font-size: 14px;
+  font-size: 12px;
   text-decoration: none;
-  background-color: ${colors.button};
-  color: #ffffff;
+  background-color: #c71585;
+  color: #fff;
+  font-weight: bold;
   width: 70px;
   text-align: center;
   padding: 5px;
   margin: 0 0 5px;
   border-radius: 3px;
   transition: all 0.3s;
-  :hover {
-    background-color: ${colors.buttonHover};
-  }
 `;
 
 export const ProductCellRating = styled.p`
@@ -83,7 +85,7 @@ export const SearchbarContainer = styled.div`
 
 export const SearchInnerContainer = styled.div`
   display: flex;
-  background-color: ${colors.primary};
+  background-color: ${colors.darkPrimary};
   padding: 5px 10px;
   align-items: center;
 `;
@@ -114,7 +116,7 @@ export const Dropdown = styled.select`
   padding: 0 10px;
   height: 33px;
   width: 160px;
-  background-color: ${colors.primary};
+  background-color: ${colors.darkPrimary};
   border: 1px solid #cccccc;
   transition: all 0.3s;
   :hover {
@@ -152,15 +154,15 @@ export const CategoryTitle = styled.h1`
   padding-top: 7px;
   padding-bottom: 3px;
   margin-left: 8px;
+  font-weight: normal;
 `;
 
 export const FieldContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: ${colors.secondary};
-  color: #ffffff;
+  background-color: #aedb0b;
+  color: ${colors.darkPrimary};
   margin: 10px 10px 0;
-  // color: #545b60;
 `;
 
 export const SearchContainer = styled.div`

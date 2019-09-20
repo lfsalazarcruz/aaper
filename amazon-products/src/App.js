@@ -179,28 +179,19 @@ class App extends Component {
               />
             </SearchContainer>
             <ProductTableFields>
-              <ProductCellPosition style={{ fontWeight: "bolder" }}>
-                Position
-              </ProductCellPosition>
+              <ProductCellPosition>Position</ProductCellPosition>
               <ProductCellTitle
                 style={{
-                  fontWeight: "bolder",
                   textAlign: "center",
                   width: "40%"
                 }}
               >
                 Product
               </ProductCellTitle>
-              <ProductCellContainer style={{ fontWeight: "bolder" }} />
-              <ProductCellRating style={{ fontWeight: "bolder" }}>
-                Rating
-              </ProductCellRating>
-              <ProductCellReview style={{ fontWeight: "bolder" }}>
-                Reviews
-              </ProductCellReview>
-              <ProductCellPrice style={{ fontWeight: "bolder" }}>
-                Price
-              </ProductCellPrice>
+              <ProductCellContainer />
+              <ProductCellRating>Rating</ProductCellRating>
+              <ProductCellReview>Reviews</ProductCellReview>
+              <ProductCellPrice>Price</ProductCellPrice>
             </ProductTableFields>
           </FieldContainer>
         )}

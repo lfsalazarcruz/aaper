@@ -21,7 +21,7 @@ const Home = props => {
         Hourly updates of Amazon's most popular products based on sales.
       </PageInfo>
       <MidContainer>
-        <CarouselTitle>TRENDING THIS HOUR...</CarouselTitle>
+        <CarouselTitle>Trending this hour...</CarouselTitle>
         <CarouselContainer>
           {props.escalated.map(product => {
             return (

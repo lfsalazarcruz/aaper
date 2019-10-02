@@ -38,11 +38,9 @@ const MidContainer = styled.div`
 
 const Link = styled.a`
   text-decoration: none;
-  color: ${colors.primary};
+  color: #0000ee;
   transition: all 0.3s;
-  :hover {
-    text-decoration: underline;
-  }
+  text-decoration: underline;
 `;
 
 const CardTitle = styled.p`

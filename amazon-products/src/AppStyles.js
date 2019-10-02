@@ -2,7 +2,7 @@ import styled from "styled-components";
 import colors from "./constants/colors";
 
 export const ProductTable = styled.div`
-  background-color: #2a373b;
+  background-color: ${colors.lighter};
 `;
 
 export const ProductTableFields = styled.div`
@@ -14,9 +14,9 @@ export const ProductTableFields = styled.div`
 export const ProductRow = styled.div`
   padding: 8px 0;
   display: flex;
-  background-color: #ffffff;
-  margin: 1px 10px;
-  color: ${colors.darkPrimary};
+  background-color: ${colors.backgroundColor};
+  margin: 1px 0;
+  color: ${colors.darker};
 `;
 
 export const ProductCellPosition = styled.p`
@@ -39,20 +39,24 @@ export const ProductCellTitle = styled.p`
   margin: 5px 0;
   font-size: 14px;
   text-align: justify;
+  font-weight: bold;
 `;
 
 export const AmazonLink = styled.a`
   font-size: 12px;
   text-decoration: none;
-  background-color: #c71585;
+  background-color: ${colors.accent3};
   color: #fff;
   font-weight: bold;
   width: 70px;
   text-align: center;
-  padding: 5px;
+  padding: 7px 14px;
   margin: 0 0 5px;
   border-radius: 3px;
   transition: all 0.3s;
+  :hover {
+    background-color: ${colors.accent3Hover};
+  }
 `;
 
 export const ProductCellRating = styled.p`
@@ -80,12 +84,11 @@ export const SearchbarContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  background-color: #eef3f7;
 `;
 
 export const SearchInnerContainer = styled.div`
   display: flex;
-  background-color: ${colors.darkPrimary};
+  background-color: ${colors.darker};
   padding: 5px 10px;
   align-items: center;
 `;
@@ -93,7 +96,7 @@ export const SearchInnerContainer = styled.div`
 export const NavbarTitle = styled.h1`
   font-size: 16px;
   margin: 10px 20px;
-  color: #ffffff;
+  color: ${colors.backgroundColor};
   :hover {
     cursor: pointer;
   }
@@ -110,13 +113,13 @@ export const SearchInput = styled.input`
 `;
 
 export const Dropdown = styled.select`
-  color: #ffffff;
+  color: ${colors.backgroundColor};
   font-weight: bold;
   font-size: 12px;
   padding: 0 10px;
   height: 33px;
   width: 160px;
-  background-color: ${colors.darkPrimary};
+  background-color: ${colors.darker};
   border: 1px solid #cccccc;
   transition: all 0.3s;
   :hover {
@@ -160,9 +163,8 @@ export const CategoryTitle = styled.h1`
 export const FieldContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #aedb0b;
-  color: ${colors.darkPrimary};
-  margin: 10px 10px 0;
+  background-color: ${colors.dark};
+  color: ${colors.backgroundColor};
 `;
 
 export const SearchContainer = styled.div`

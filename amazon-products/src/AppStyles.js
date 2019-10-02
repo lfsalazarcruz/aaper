@@ -2,7 +2,7 @@ import styled from "styled-components";
 import colors from "./constants/colors";
 
 export const ProductTable = styled.div`
-  background-color: ${colors.lighter};
+  background-color: lightgray;
 `;
 
 export const ProductTableFields = styled.div`

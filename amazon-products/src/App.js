@@ -163,76 +163,78 @@ class App extends Component {
         {!this.state.selectedCategory ? (
           <Home escalated={this.state.escalated} />
         ) : (
-          <FieldContainer>
-            <SearchContainer>
-              <CategoryTitle>
-                Category: {this.state.selectedCategory}
-              </CategoryTitle>
-              <CategoryTitle>
-                Last Update: {this.state.dateUdpated}
-              </CategoryTitle>
-              <SearchInput
-                type="text"
-                name="searchTerm"
-                onChange={this.filterList}
-                placeholder="Search item..."
-              />
-            </SearchContainer>
-            <ProductTableFields>
-              <ProductCellPosition>Position</ProductCellPosition>
-              <ProductCellTitle
-                style={{
-                  textAlign: "center",
-                  width: "40%"
-                }}
-              >
-                Product
-              </ProductCellTitle>
-              <ProductCellContainer />
-              <ProductCellRating>Rating</ProductCellRating>
-              <ProductCellReview>Reviews</ProductCellReview>
-              <ProductCellPrice>Price</ProductCellPrice>
-            </ProductTableFields>
-          </FieldContainer>
-        )}
-        <ProductTable>
-          {this.state.filtered.map((product, index) => {
-            return (
-              <ProductRow
-                id={product.place}
-                key={product.place}
-                onClick={this.extendProduct}
-              >
-                <ProductPositionContainer
-                  style={{ color: getFontColor(product.counter) }}
+          <>
+            <FieldContainer>
+              <SearchContainer>
+                <CategoryTitle>
+                  Category: {this.state.selectedCategory}
+                </CategoryTitle>
+                <CategoryTitle>
+                  Last Update: {this.state.dateUdpated}
+                </CategoryTitle>
+                <SearchInput
+                  type="text"
+                  name="searchTerm"
+                  onChange={this.filterList}
+                  placeholder="Search item..."
+                />
+              </SearchContainer>
+              <ProductTableFields>
+                <ProductCellPosition>Position</ProductCellPosition>
+                <ProductCellTitle
+                  style={{
+                    textAlign: "center",
+                    width: "40%"
+                  }}
                 >
-                  <ProductCellPosition>{product.place}</ProductCellPosition>
-                  {arrowDirection(product.counter)}
-                  {product.counter > 0 ? (
-                    <CurrentPosition>+{product.counter}</CurrentPosition>
-                  ) : product.counter < 0 ? (
-                    <CurrentPosition>{product.counter}</CurrentPosition>
-                  ) : null}
-                </ProductPositionContainer>
-                <ProductTitleContainer>
-                  <ProductCellTitle>{product.title}</ProductCellTitle>
-                  <AmazonLink
-                    href={`https://www.amazon.com${product.url}`}
-                    target="_blank"
+                  Product
+                </ProductCellTitle>
+                <ProductCellContainer />
+                <ProductCellRating>Rating</ProductCellRating>
+                <ProductCellReview>Reviews</ProductCellReview>
+                <ProductCellPrice>Price</ProductCellPrice>
+              </ProductTableFields>
+            </FieldContainer>
+            <ProductTable>
+              {this.state.filtered.map((product, index) => {
+                return (
+                  <ProductRow
+                    id={product.place}
+                    key={product.place}
+                    onClick={this.extendProduct}
                   >
-                    Buy now
-                  </AmazonLink>
-                </ProductTitleContainer>
-                <ProductCellContainer>
-                  <ProductCellImage src={product.image} />
-                </ProductCellContainer>
-                <ProductCellRating>{product.rating}</ProductCellRating>
-                <ProductCellReview>{product.reviews}</ProductCellReview>
-                <ProductCellPrice>{product.price}</ProductCellPrice>
-              </ProductRow>
-            );
-          })}
-        </ProductTable>
+                    <ProductPositionContainer
+                      style={{ color: getFontColor(product.counter) }}
+                    >
+                      <ProductCellPosition>{product.place}</ProductCellPosition>
+                      {arrowDirection(product.counter)}
+                      {product.counter > 0 ? (
+                        <CurrentPosition>+{product.counter}</CurrentPosition>
+                      ) : product.counter < 0 ? (
+                        <CurrentPosition>{product.counter}</CurrentPosition>
+                      ) : null}
+                    </ProductPositionContainer>
+                    <ProductTitleContainer>
+                      <ProductCellTitle>{product.title}</ProductCellTitle>
+                      <AmazonLink
+                        href={`https://www.amazon.com${product.url}`}
+                        target="_blank"
+                      >
+                        Buy now
+                      </AmazonLink>
+                    </ProductTitleContainer>
+                    <ProductCellContainer>
+                      <ProductCellImage src={product.image} />
+                    </ProductCellContainer>
+                    <ProductCellRating>{product.rating}</ProductCellRating>
+                    <ProductCellReview>{product.reviews}</ProductCellReview>
+                    <ProductCellPrice>{product.price}</ProductCellPrice>
+                  </ProductRow>
+                );
+              })}
+            </ProductTable>
+          </>
+        )}
       </div>
     );
   }

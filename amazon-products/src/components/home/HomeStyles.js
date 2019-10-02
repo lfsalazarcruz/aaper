@@ -46,7 +46,6 @@ export const CarouselTitle = styled.p`
   font-size: 40px;
   padding-top: 10px;
   padding-bottom: 10px;
-  letter-spacing: 2px;
   width: 96%;
   color: ${colors.backgroundColor};
 `;

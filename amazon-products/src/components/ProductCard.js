@@ -10,7 +10,7 @@ const CardContainer = styled.div`
   margin-left: 10px;
   margin-right: 10px;
   padding: 10px;
-  background-color: #ffffff;
+  background-color: ${colors.backgroundColor};
   border-radius: 5px;
   -webkit-box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.75);

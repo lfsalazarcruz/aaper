@@ -2,22 +2,22 @@ import styled from "styled-components";
 import colors from "../../constants/colors";
 
 export const HomeContainer = styled.div`
-  color: #576574;
-  // background-color: #eef3f7;
-  // background-color: #ffffff;
-  background-color: #2a373b;
-  color: #ffffff;
+  color: ${colors.dark};
+  background-color: ${colors.backgroundColor};
 `;
 
 export const PageTitle = styled.h1`
   margin: 120px 20px 20px;
   text-align: center;
   font-size: 50px;
+  color: ${colors.darker};
 `;
 
 export const PageSubtitle = styled.h2`
   text-align: center;
   font-size: 45px;
+  font-size: 50px;
+  color: ${colors.darker};
 `;
 
 export const PageInfo = styled.p`
@@ -28,9 +28,12 @@ export const PageInfo = styled.p`
 `;
 
 export const MidContainer = styled.div`
-  // background-color: ${colors.accent};
-  background: rgb(201,245,39);
-  background: radial-gradient(circle, rgba(201,245,39,1) 0%, rgba(175,213,36,1) 100%);
+  background: ${colors.accent3};
+  background: radial-gradient(
+    circle,
+    ${colors.accent3} 0%,
+    ${colors.accent3Hover} 100%
+  );
   margin-top: 120px;
   display: flex;
   flex-direction: column;
@@ -40,14 +43,12 @@ export const MidContainer = styled.div`
 
 export const CarouselTitle = styled.p`
   margin: 0;
-  // font-weight: bold;
   font-size: 40px;
   padding-top: 10px;
   padding-bottom: 10px;
-  // letter-spacing: 2px;
+  letter-spacing: 2px;
   width: 96%;
-  // color: ${colors.buttonHover};
-  color: ${colors.primary};
+  color: ${colors.backgroundColor};
 `;
 
 export const CarouselContainer = styled.div`
@@ -63,8 +64,7 @@ export const CarouselContainer = styled.div`
 
 export const Link = styled.a`
   text-decoration: none;
-  // font-weight: bold;
-  color: ${colors.accent};
+  color: ${colors.accent3Hover};
   transition: all 0.3s;
   :hover {
     text-decoration: line-through;
@@ -76,6 +76,7 @@ export const Footer = styled.div`
   align-items: center;
   justify-content: flex-end;
   margin: 0;
-  background-color: ${colors.darkPrimary};
+  background-color: ${colors.darker};
+  color: ${colors.backgroundColor}
   height: 300px;
 `;

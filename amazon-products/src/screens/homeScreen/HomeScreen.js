@@ -10,9 +10,9 @@ import {
   Footer,
   Link
 } from "./HomeStyles";
-import ProductCard from "../ProductCard";
+import ProductCard from "../../components/ProductCard";
 
-const Home = props => {
+const HomeScreen = props => {
   return (
     <HomeContainer>
       <PageTitle>Welcome to Amazon Scrapy!</PageTitle>
@@ -55,4 +55,4 @@ const Home = props => {
   );
 };
 
-export default Home;
+export default HomeScreen;
